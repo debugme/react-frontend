@@ -1,0 +1,21 @@
+1. DONE: Create a presentation component for each video rendered in the video list
+2. Update video feed each time the search filter is updated
+3. Update video feed each time the show filter is updated
+3. Update video feed each time the popularity filter is updated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

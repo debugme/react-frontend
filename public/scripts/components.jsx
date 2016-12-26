@@ -1,7 +1,7 @@
 const Header = React.createClass({
   render: function () {
     return (
-      <header>
+      <header className="header-pane">
         <section>
           <span>Video Channel</span>
         </section>
@@ -13,7 +13,7 @@ const Header = React.createClass({
 const Footer = React.createClass({
   render: function () {
     return (
-      <footer>
+      <footer className="footer-pane">
         <span>
           Made with <i className="empty heart icon red"></i> by Asad
         </span>
@@ -65,9 +65,9 @@ const Filter = React.createClass({
     const hidePopular = this.getClasses('popularVideos', 'No')
 
     return (
-      <aside>
+      <aside className="options-pane">
         <div className="ui raised segments">
-          <div className="ui segment">
+          <div className="ui segment compact">
             <i className="red search icon"></i>
             <span className="ui input small filter-box">
               <input ref="search" onChange={this.onSearch} id="filter-input" type="text" placeholder="Type to refine results ..." />
@@ -118,6 +118,8 @@ const VideoInfo = React.createClass({
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
 
+    const shortDescription = _.truncate(description, {length: 500, omission: '...'})
+
     return (
       <section>
         <div className="ui raised segment feed">
@@ -131,6 +133,9 @@ const VideoInfo = React.createClass({
                 <div className="date">
                   {lastModified}
                 </div>
+              </div>
+              <div className="short-description">
+                {shortDescription}
               </div>
               <div className="description">
                 {description}
@@ -153,7 +158,7 @@ const VideoList = React.createClass({
   buildVideo: video => <VideoInfo key={video.uri} {...video} />,
   render: function () {
     const videos = this.props.videos.map(this.buildVideo)
-    return <main> {videos} </main>
+    return <main className="content-pane"> {videos} </main>
   }
 })
 
@@ -181,7 +186,7 @@ const Application = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="container">
         <Header />
         <VideoList videos={this.state.filteredVideo} />
         <Filter {...this.state} updateState={this.updateState} />

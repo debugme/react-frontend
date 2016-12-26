@@ -1,81 +1,71 @@
-body {
+* {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
-header {
+body .container {
+  background-color: #4183C4;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header-pane {
   padding: 0 2em;
-  margin: 0;
-  box-sizing: border-box;
   background-color: #1B1C1D;
   color: #4183C4;
-  height: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  height: 3em;
 }
 
-main {
-  margin: 0;
-  box-sizing: border-box;
-  background-color: #FFFFFF;
-  height: calc(100vh - 6em);
-  width: calc(75vw);
+.content-pane {
   overflow: auto;
-  float: left;
-  background-color: #4183C4;
   padding: 2em 2em;
 }
 
-main > section {
-  margin-bottom: 1em;
+.content-pane > section {
+  margin-bottom: 2em;
 }
 
-aside {
-  box-sizing: border-box;
-  float: left;
-  height: calc(100vh - 6em);
-  width: calc(25vw);
-  overflow: auto;
-  background-color: #4183C4;
-  margin: 0;
+.options-pane {
   padding: 2em 2em;
 }
 
-aside > section {
+.options-pane > section {
   color: #767676;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-bottom: 1em;
 }
 
-aside .flex-row {
+.options-pane .ui.segment.compact {
+  padding: 0.5em 1em;
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
-aside .filter-icon {
+.options-pane .filter-icon {
   flex-grow: 0;
   margin: auto 0;
 }
 
-aside .filter-box {
+.options-pane .filter-box {
   flex-grow: 1;
-  margin-left: 0.4em;
 }
 
 #filter-input {
   border: none;
   margin-top: 0.2em;
-  padding: 0;
 }
 
 .small-text {
-  margin-left: 0.2em;
+  margin-left: 1em;
   font-size: 0.9rem;
   font-weight: 100;
 }
@@ -86,21 +76,20 @@ aside .filter-box {
   font-weight: 100;
 }
 
-.description {
+.description, .short-description {
   margin: 0.8em 0;
   font-size: 0.9rem;
   font-style: italic;
 }
 
-footer {
+.footer-pane {
   padding: 0 4em 0 0;
-  margin: 0;
-  box-sizing: border-box;
   background-color: #1B1C1D;
-  height: 3em;
-  color: dimgrey;
+  color: #767676;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  height: 3em;
 }
+

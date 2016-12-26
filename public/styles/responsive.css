@@ -1,0 +1,74 @@
+/* Large Display */
+@media screen and (min-width: 1280px) {
+  .header-pane {
+    width: calc(100vw);
+    order: 0;
+  }
+  .content-pane {
+    height: calc(100vh - (3em + 3em));
+    width: calc(70vw);
+    order: 1;
+  }
+  .options-pane {
+    width: calc(30vw);
+    height: calc(100vh - (3em + 3em));
+    order: 2;
+  }
+  .footer-pane {
+    width: 100vw;
+    order: 3;
+  }
+  .short-description {
+    display: none;
+  }
+  .description {
+    display: block;
+  }
+}
+
+/* Medium Display */
+@media screen and (max-width: 1280px) {
+  .header-pane {
+    width: 100vw;
+    order: 0;
+  }
+  .content-pane {
+    width: 100vw;
+    order: 2;
+    height: calc(100vh - (3em + 3em));
+    padding: 3em 3em;
+  }
+  .options-pane {
+    display: none;
+  }
+  .footer-pane {
+    width: 100vw;
+    order: 3;
+  }
+  .short-description {
+    display: block;
+  }
+  .description {
+    display: none;
+  }
+}
+
+/* Small Display */
+@media screen and (max-width: 640px) {
+  .header-pane {
+    width: 100vw;
+    order: 0;
+  }
+  .content-pane {
+    width: 100vw;
+    order: 1;
+    height: calc(100vh - (3em + 3em))
+  }
+  .options-pane {
+    display: none;
+  }
+  .footer-pane {
+    width: 100vw;
+    order: 2;
+  }
+}

@@ -2,33 +2,52 @@ const Header = React.createClass({
   render: function () {
     return (
       <header className="header-pane">
-
-          <span>Video Channel</span>
-
+          <span className="logo">Video Channel</span>
+          <span className="more">
+            <span className="menu"><i className="content icon"></i></span>
+            <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
+            <span className="name">Asad Razvi</span>
+          </span>
       </header>
     )
   }
 })
 
 const Footer = React.createClass({
-
-  // <a href="mailto:debugme@hotmail.com">
-  //   <i className="windows icon"></i>HotMail
-  // </a>
-
   render: function () {
     return (
       <footer className="footer-pane">
         <span>
-        <a href="https://uk.linkedin.com/in/debugme" target="_blank">
-          <i className="linkedin square icon"></i>LinkedIn
-        </a>
-        <a href="https://github.com/debugme" target="_blank">
-          <i className="github icon"></i>GitHub
-        </a>
-        <a href="https://debugme.wordpress.com/" target="_blank">
-          <i className="wordpress icon"></i>WordPress
-        </a>
+          <a href="mailto:debugme@hotmail.com">
+            <i className="send icon"></i>
+            <span className="text">MailMe</span>
+          </a>
+          <a href="https://uk.linkedin.com/in/debugme" target="_blank">
+            <i className="linkedin square icon"></i>
+            <span className="text">LinkedIn</span>
+          </a>
+          <a href="https://github.com/debugme" target="_blank">
+            <i className="github icon"></i>
+            <span className="text">GitHub</span>
+          </a>
+          <a href="https://debugme.wordpress.com/" target="_blank">
+            <i className="wordpress icon"></i>
+            <span className="text">WordPress</span>
+          </a>
+          <span className="view">
+            <span className="small">
+              <i className="red tablet icon"></i>
+              <span className="text">Small</span>
+            </span>
+            <span className="medium">
+              <i className="red laptop icon"></i>
+              <span className="text">Medium</span>
+            </span>
+            <span className="large">
+              <i className="red desktop icon"></i>
+              <span className="text">Large</span>
+            </span>
+          </span>
         </span>
       </footer>
     )
@@ -157,7 +176,7 @@ const VideoInfo = React.createClass({
                 <i className="red like icon"></i> {likes} <span className="text">Likes</span>
                 <i className="red comments icon"></i> {comments} <span className="text">comments</span>
                 <i className="red play icon"></i> {plays} <span className="text">plays</span>
-                <a href={link} href="_blank"><i className="red linkify icon"></i><span className="text">Link</span></a>
+                <a href={link} target="_blank"><i className="red linkify icon"></i><span className="text">Link</span></a>
               </div>
             </div>
           </div>
@@ -180,7 +199,7 @@ const Application = React.createClass({
   getDefaultProps: function () {
     return {
       searchTerms: [],
-      videosPerPage: 50,
+      videosPerPage: 10,
       popularVideos: false,
       videosChannel: window.com.schibsted.videosChannel,
       filteredVideo: window.com.schibsted.videosChannel.data

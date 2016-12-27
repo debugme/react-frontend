@@ -17,10 +17,18 @@ body .container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  height: 3em;
+}
+
+.header-pane .logo {
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  height: 3em;
+}
+
+.header-pane .menu {
+  margin-top: 0.1em;
+  font-size: 1.2rem;
 }
 
 .content-pane {
@@ -78,7 +86,6 @@ body .container {
 }
 
 .footer-pane {
-
   background-color: #1B1C1D;
   color: #767676;
   display: flex;

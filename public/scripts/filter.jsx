@@ -5,7 +5,7 @@ var Filter = React.createclassName({
         <div className="ui raised segments">
           <div className="ui segment">
             <i className="red search icon"></i>
-            <span className="ui input small filter-box">
+            <span className="ui input small search-box">
               <input id="filter-input" type="text" placeholder="Type to refine results ...">
             </span>
            </div>

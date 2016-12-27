@@ -47,19 +47,23 @@ body .container {
   margin-bottom: 1em;
 }
 
-.options-pane .ui.segment.compact {
+.ui.segment.compact {
   padding: 0.5em 1em;
   display: flex;
   align-items: center;
 }
 
-.options-pane .filter-icon {
+.filter-icon {
   flex-grow: 0;
   margin: auto 0;
 }
 
-.options-pane .filter-box {
-  flex-grow: 1;
+.ui.segment.compact.search-field {
+  display: flex;
+}
+
+.search-box {
+  flex: 1;
 }
 
 #filter-input {

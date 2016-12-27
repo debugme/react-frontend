@@ -1,5 +1,51 @@
 const Header = React.createClass({
+
+  onSearch: function (event) {
+    const searchValue = event.target.value.trim()
+    const searchTerms = searchValue.split(/\s*\s\s*/)
+    const { updateState } = this.props
+    updateState({ searchTerms })
+
+  },
+
+  componentDidMount: function () {
+    const searchTerms = this.props.searchTerms.join(' ')
+    const searchField = this.refs.search
+    searchField.value = searchTerms
+    const { updateState } = this.props
+
+    $('.ui.dropdown#videosPerPage').dropdown({
+      onChange: function (videosPerPage) {
+        updateState({ videosPerPage: videosPerPage })
+      }
+    })
+
+    $('.ui.dropdown#popularVideos').dropdown({
+      onChange: function (popularVideos) {
+        updateState({ popularVideos: popularVideos === "yes" })
+      }
+    })
+
+    $('.ui.small.modal').modal({observeChanges: true});
+
+    $('span.menu').on('click', function(event) {
+      $('.ui.small.modal').modal({blurring: true}).modal('show')
+    })
+  },
+
+  getClasses: function (propName, propData) {
+    return ['item', this.props[propName] === propData ? 'active' : ''].join(' ')
+  },
+
   render: function () {
+
+    const show10 = this.getClasses('videosPerPage', 10);
+    const show25 = this.getClasses('videosPerPage', 25);
+    const show50 = this.getClasses('videosPerPage', 50);
+
+    const showPopular = this.getClasses('popularVideos', 'Yes')
+    const hidePopular = this.getClasses('popularVideos', 'No')
+
     return (
       <header className="header-pane">
           <span className="logo">Video Channel</span>
@@ -8,6 +54,42 @@ const Header = React.createClass({
             <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
             <span className="name">Asad Razvi</span>
           </span>
+          <div className="ui small modal center">
+            <div className="ui raised segments">
+              <div className="ui segment compact search-field">
+                <i className="red search icon"></i>
+                <span className="ui input small search-box">
+                  <input ref="search" onChange={this.onSearch} id="filter-input" type="text" placeholder="Type to refine results ..." />
+                </span>
+              </div>
+              <div className="ui segment">
+                <i className="red unhide icon"></i>
+                <span className="small-text">Show</span>
+                <div className="ui inline dropdown" id="videosPerPage">
+                  <span className="text small-text">{this.props.videosPerPage}</span>
+                  <i className="dropdown icon"></i>
+                  <div className="menu">
+                    <div className={show10} data-text="10"><span className="drop-down">10</span></div>
+                    <div className={show25} data-text="25"><span className="drop-down">25</span></div>
+                    <div className={show50} data-text="50"><span className="drop-down">50</span></div>
+                  </div>
+                  <span className="small-text">videos on page</span>
+                </div>
+              </div>
+              <div className="ui segment">
+                <i className="red filter icon filter-icon"></i>
+                <span className="small-text">Filter by popular users?</span>
+                <div className="ui inline dropdown" id="popularVideos">
+                  <span className="text small-text">No</span>
+                  <i className="dropdown icon"></i>
+                  <div className="menu">
+                    <div className={showPopular} data-text="Yes"><span className="drop-down">Yes</span></div>
+                    <div className={hidePopular} data-text="No"><span className="drop-down">No</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </header>
     )
   }
@@ -99,9 +181,9 @@ const Filter = React.createClass({
     return (
       <aside className="options-pane">
         <div className="ui raised segments">
-          <div className="ui segment compact">
+          <div className="ui segment compact search-field">
             <i className="red search icon"></i>
-            <span className="ui input small filter-box">
+            <span className="ui input small search-box">
               <input ref="search" onChange={this.onSearch} id="filter-input" type="text" placeholder="Type to refine results ..." />
             </span>
           </div>
@@ -219,7 +301,7 @@ const Application = React.createClass({
   render: function () {
     return (
       <div className="container">
-        <Header />
+        <Header {...this.state} updateState={this.updateState} />
         <VideoList videos={this.state.filteredVideo} />
         <Filter {...this.state} updateState={this.updateState} />
         <Footer />

@@ -12,7 +12,6 @@ body .container {
 }
 
 .header-pane {
-  padding: 0 2em;
   background-color: #1B1C1D;
   color: #4183C4;
   display: flex;
@@ -26,15 +25,11 @@ body .container {
 
 .content-pane {
   overflow: auto;
-  padding: 2em 2em;
-}
-
-.content-pane > section {
-  margin-bottom: 2em;
+  padding: 2em 2em 0em 2em;
 }
 
 .options-pane {
-  padding: 2em 2em;
+  padding: 2em 2em 0em 0em;
 }
 
 .options-pane > section {
@@ -83,7 +78,7 @@ body .container {
 }
 
 .footer-pane {
-  padding: 0 4em 0 0;
+
   background-color: #1B1C1D;
   color: #767676;
   display: flex;
@@ -93,3 +88,12 @@ body .container {
   height: 3em;
 }
 
+.footer-pane a:link, a:visited, a:hover, a:active {
+  color: #767676;
+  text-decoration: none;
+}
+
+.footer-pane i {
+  margin-left: 1em;
+  color: #4183C4;
+}

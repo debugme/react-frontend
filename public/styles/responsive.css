@@ -1,6 +1,7 @@
 /* Large Display */
 @media screen and (min-width: 1280px) {
   .header-pane {
+    padding: 0 2em;
     width: calc(100vw);
     order: 0;
   }
@@ -9,12 +10,16 @@
     width: calc(70vw);
     order: 1;
   }
+  .content-pane > section {
+    margin-bottom: 2em;
+  }
   .options-pane {
     width: calc(30vw);
     height: calc(100vh - (3em + 3em));
     order: 2;
   }
   .footer-pane {
+    padding: 0 2em;
     width: 100vw;
     order: 3;
   }
@@ -29,6 +34,7 @@
 /* Medium Display */
 @media screen and (max-width: 1280px) {
   .header-pane {
+    padding: 0 3em;
     width: 100vw;
     order: 0;
   }
@@ -36,12 +42,16 @@
     width: 100vw;
     order: 2;
     height: calc(100vh - (3em + 3em));
-    padding: 3em 3em;
+    padding: 3em 3em 0em 3em;
+  }
+  .content-pane > section {
+    margin-bottom: 2em;
   }
   .options-pane {
     display: none;
   }
   .footer-pane {
+    padding: 0 3em;
     width: 100vw;
     order: 3;
   }
@@ -56,18 +66,31 @@
 /* Small Display */
 @media screen and (max-width: 640px) {
   .header-pane {
+    justify-content: center;
     width: 100vw;
     order: 0;
   }
   .content-pane {
     width: 100vw;
     order: 1;
-    height: calc(100vh - (3em + 3em))
+    height: calc(100vh - (3em + 3em));
+    padding: 2em 2em 1em 2em;
+  }
+  .content-pane > section {
+    margin-bottom: 1em;
+  }
+  .content-pane .meta {
+    display: block;
+    float: right;
+  }
+  .content-pane .text {
+    display: none;
   }
   .options-pane {
     display: none;
   }
   .footer-pane {
+    justify-content: center;
     width: 100vw;
     order: 2;
   }

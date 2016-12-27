@@ -2,20 +2,33 @@ const Header = React.createClass({
   render: function () {
     return (
       <header className="header-pane">
-        <section>
+
           <span>Video Channel</span>
-        </section>
+
       </header>
     )
   }
 })
 
 const Footer = React.createClass({
+
+  // <a href="mailto:debugme@hotmail.com">
+  //   <i className="windows icon"></i>HotMail
+  // </a>
+
   render: function () {
     return (
       <footer className="footer-pane">
         <span>
-          Made with <i className="empty heart icon red"></i> by Asad
+        <a href="https://uk.linkedin.com/in/debugme" target="_blank">
+          <i className="linkedin square icon"></i>LinkedIn
+        </a>
+        <a href="https://github.com/debugme" target="_blank">
+          <i className="github icon"></i>GitHub
+        </a>
+        <a href="https://debugme.wordpress.com/" target="_blank">
+          <i className="wordpress icon"></i>WordPress
+        </a>
         </span>
       </footer>
     )
@@ -118,7 +131,7 @@ const VideoInfo = React.createClass({
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
 
-    const shortDescription = _.truncate(description, {length: 500, omission: '...'})
+    const shortDescription = _.truncate(description, { length: 500, omission: '...' })
 
     return (
       <section>
@@ -141,10 +154,10 @@ const VideoInfo = React.createClass({
                 {description}
               </div>
               <div className="meta">
-                <i className="red like icon"></i> {likes} Likes
-                <i className="red comments icon"></i> {comments} comments
-                <i className="red play icon"></i> {plays} plays
-                <a href={link} href="_blank"><i className="red linkify icon"></i>Link</a>
+                <i className="red like icon"></i> {likes} <span className="text">Likes</span>
+                <i className="red comments icon"></i> {comments} <span className="text">comments</span>
+                <i className="red play icon"></i> {plays} <span className="text">plays</span>
+                <a href={link} href="_blank"><i className="red linkify icon"></i><span className="text">Link</span></a>
               </div>
             </div>
           </div>

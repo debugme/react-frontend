@@ -36,6 +36,11 @@ body .container {
   padding: 2em 2em 0em 2em;
 }
 
+/* Hide scrollbars as they look ugly! */
+::-webkit-scrollbar {
+  display: none;
+}
+
 .options-pane {
   padding: 2em 2em 0em 0em;
 }
@@ -101,7 +106,6 @@ body .container {
 
 .footer-pane a:link, a:visited, a:hover, a:active {
   color: #767676;
-  text-decoration: none;
 }
 
 .footer-pane i {

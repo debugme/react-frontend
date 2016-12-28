@@ -110,9 +110,10 @@ const Footer = React.createClass({
       <footer className="footer-pane">
         <span>
           <a href="mailto:debugme@hotmail.com">
-            <i className="send icon"></i>
-            <span className="text">MailMe</span>
+            <i className="windows icon"></i>
+            <span className="text">HotMail</span>
           </a>
+
           <a href="https://uk.linkedin.com/in/debugme" target="_blank">
             <i className="linkedin square icon"></i>
             <span className="text">LinkedIn</span>

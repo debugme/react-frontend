@@ -1,9 +1,18 @@
 1. DONE: Create a presentation component for each video rendered in the video list
 2. DONE: Make your design responsive as you adjust width and height of web page
 3. DONE: Make filter options available from header hamburger icon
+4. DONE: Refactor header filter and options filter into single component
 
-4. Refactor header filter and options filter into single component
+
 5. Update video feed each time the search filter is updated
 6. Update video feed each time the show filter is updated
 7. Update video feed each time the popularity filter is updated
 8. Add pagination support to application
+
+
+
+
+          <a href="https://www.yelp.co.uk/user_details?userid=ttfW-D-8EB3DacGPwkT1gw">
+            <i className="yelp icon"></i>
+            <span className="text">Yelp</span>
+          </a>

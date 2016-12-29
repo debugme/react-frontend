@@ -158,7 +158,7 @@ const SideBar = React.createClass({
 const VideoInfo = React.createClass({
   render: function () {
 
-    const { user, link, description, modified_time, stats, metadata } = this.props
+    const { user, name, link, description, modified_time, stats, metadata } = this.props
 
     const authorImage = _.get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
     const authorName = _.get(user, 'name')
@@ -175,7 +175,7 @@ const VideoInfo = React.createClass({
         <div className="ui raised segment feed">
           <div className="event">
             <div className="label">
-              <img src={authorImage} />
+                <img src={authorImage} />
             </div>
             <div className="content">
               <div className="summary">
@@ -184,6 +184,11 @@ const VideoInfo = React.createClass({
                   {lastModified}
                 </div>
               </div>
+
+              <div className="video-title">
+                <h3 className="ui header"><a className="user" href={link} target="_blank">{name}</a></h3>
+              </div>
+
               <div className="short-description">
                 {shortDescription}
               </div>
@@ -191,10 +196,10 @@ const VideoInfo = React.createClass({
                 {description}
               </div>
               <div className="meta">
-                <i className="red like icon"></i> {likes} <span className="text">Likes</span>
+                <i className="red like icon"></i>{likes}<span className="text">likes</span>
                 <i className="red comments icon"></i> {comments} <span className="text">comments</span>
                 <i className="red play icon"></i> {plays} <span className="text">plays</span>
-                <a href={link} target="_blank"><i className="red linkify icon"></i><span className="text">Link</span></a>
+                <a href={link} target="_blank"><i className="red linkify icon"></i>video<span className="text">link</span></a>
               </div>
             </div>
           </div>

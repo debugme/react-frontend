@@ -36,6 +36,10 @@ body .container {
   padding: 2em 2em 0em 2em;
 }
 
+.content-pane .video-title {
+  margin: 0.3em 0 0 0;
+}
+
 /* Hide scrollbars as they look ugly! */
 ::-webkit-scrollbar {
   display: none;
@@ -111,4 +115,8 @@ body .container {
 .footer-pane i {
   margin-left: 1em;
   color: #4183C4;
+}
+
+.ui.feed>.event>.content .meta .text {
+  margin-left: 0.3em;
 }

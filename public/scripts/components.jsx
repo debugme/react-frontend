@@ -181,7 +181,7 @@ const VideoInfo = React.createClass({
               <div className="summary">
                 <a className="user" href={authorLink} target="_blank">{authorName}</a>
                 <div className="date">
-                  {lastModified}
+                  <span className="text">{lastModified}</span>
                 </div>
               </div>
 

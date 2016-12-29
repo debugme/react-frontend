@@ -1,32 +1,33 @@
 /* Large Display */
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 900px) {
   .header-pane {
     padding: 0 2em;
-    width: calc(100vw);
+    width: 100vw;
     order: 0;
+    border: solid red 1px;
   }
   .header-pane .menu {
     display: none;
   }
-  .content-pane {
-    height: calc(100vh - (3em + 3em));
-    width: calc(70vw);
+  .navigation-pane {
     order: 1;
+    margin: 1em 3em 0em 3em;
+    border: solid red 1px;
+  }
+  .content-pane {
+    order: 2;
+    padding: 1em 3em 0em 3em;
+    border: solid red 1px;
   }
   .content-pane > section {
-    margin-bottom: 2em;
-  }
-  .options-pane {
-    width: calc(30vw);
-    height: calc(100vh - (3em + 3em));
-    order: 2;
+    margin-bottom: 1em;
   }
   .footer-pane {
-    padding: 0 2em;
+    padding: 0 3em;
     width: 100vw;
     order: 3;
+    border: solid red 1px;
   }
-
   .footer-pane .view .small {
     display: none;
   }
@@ -46,11 +47,13 @@
 }
 
 /* Medium Display */
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 900px) {
   .header-pane {
     padding: 0 3em;
     width: 100vw;
     order: 0;
+    border: solid orange 1px;
+
   }
   .header-pane .menu {
     display: inline-block;
@@ -59,22 +62,24 @@
   .header-pane .name {
     margin-left: 0.5em;
   }
+  .navigation-pane {
+    order: 1;
+    margin: 1em 2em 0em 2em;
+    border: solid orange 1px;
+  }
   .content-pane {
-    width: 100vw;
     order: 2;
-    height: calc(100vh - (3em + 3em));
-    padding: 3em 3em 0em 3em;
+    padding: 1em 2em 0em 2em;
+    border: solid orange 1px;
   }
   .content-pane > section {
-    margin-bottom: 2em;
-  }
-  .options-pane {
-    display: none;
+    margin-bottom: 1em;
   }
   .footer-pane {
-    padding: 0 3em;
+    padding: 0 2em;
     width: 100vw;
     order: 3;
+    border: solid orange 1px;
   }
   .footer-pane .view .small {
     display: none;
@@ -94,10 +99,12 @@
 }
 
 /* Small Display */
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 700px) {
   .header-pane {
+    padding: 0 1em;
     width: 100vw;
     order: 0;
+    border: solid lawngreen 1px;
   }
   .header-pane .menu {
     display: inline-block;
@@ -105,11 +112,15 @@
   .header-pane .name {
     display: none;
   }
-  .content-pane {
-    width: 100vw;
+  .navigation-pane {
     order: 1;
-    height: calc(100vh - (3em + 3em));
-    padding: 2em 2em 1em 2em;
+    margin: 1em 1em 0em 1em;
+    border: solid lawngreen 1px;
+  }
+  .content-pane {
+    order: 2;
+    padding: 1em 1em 0em 1em;
+    border: solid lawngreen 1px;
   }
   .content-pane > section {
     margin-bottom: 1em;
@@ -121,12 +132,10 @@
   .content-pane .text {
     display: none;
   }
-  .options-pane {
-    display: none;
-  }
   .footer-pane {
-    width: 100vw;
-    order: 2;
+    order: 3;
+    padding: 0 1em;
+    border: solid lawngreen 1px;
   }
   .footer-pane .text {
     display: none;

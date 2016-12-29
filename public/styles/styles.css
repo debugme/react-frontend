@@ -19,6 +19,7 @@ body .container {
   align-items: center;
   justify-content: space-between;
   height: 3em;
+  /*border: solid red 1px;*/
 }
 
 .header-pane .logo {
@@ -31,9 +32,51 @@ body .container {
   font-size: 1.2rem;
 }
 
+.navigation-pane {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 4em;
+  /*border: solid orange 1px;*/
+}
+
+.navigation-pane .toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 1em 1.5em;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  flex: 1;
+
+}
+
+.navigation-pane .filter-text {
+  color: #4183C4;
+  margin: 0 0.5em;
+}
+
+.navigation-pane .ui.label {
+  background-color:  #1B1C1D;
+  color: #4183C4;
+}
+
+.navigation-pane .ui.label>.icon {
+  margin: 0;
+  color: #4183C4;
+}
+
+.navigation-pane .ui.input input {
+  padding: 0 1em 0 1em;
+}
+
 .content-pane {
+  width: 100vw;
+  height: calc(100vh - (3em + 3em + 4em + 2em));
   overflow: auto;
-  padding: 2em 2em 0em 2em;
+  padding: 0em 2em 0em 2em;
+  /*border: solid red 1px;*/
 }
 
 .content-pane .video-title {
@@ -106,6 +149,8 @@ body .container {
   align-items: center;
   justify-content: flex-end;
   height: 3em;
+  width: 100vw;
+  /*border: solid red 1px;*/
 }
 
 .footer-pane a:link, a:visited, a:hover, a:active {

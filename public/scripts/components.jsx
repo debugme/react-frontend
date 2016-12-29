@@ -1,10 +1,50 @@
+const Navigation = React.createClass({
+
+         // <span className="ui label search-box">
+          //   <i className="red search icon"></i>
+          //   <span className="ui input small search-box">
+          //     <input type="text" />
+          //   </span>
+          // </span>
+
+  render: function () {
+    return (
+      <nav className="navigation-pane">
+
+        <div className="toolbar">
+
+          <span className="ui label pagination">
+            <i className="left circle arrow icon"></i>
+            <span className="filter-text">1 of 5</span>
+            <i className="right circle arrow icon"></i>
+          </span>
+
+          <span className="ui label popular-user">
+            <span className="filter-text">Popular Users</span>
+            <i className="heart outline icon"></i>
+          </span>
+
+          <span className="ui label page-count">
+            <span className="filter-text">Page Count</span>
+            <span>10</span>
+          </span>
+
+
+
+        </div>
+
+      </nav>
+    )
+  }
+})
+
 const FilterSet = React.createClass({
 
   onSearch: function (event) {
     const searchValue = event.target.value.trim()
     const searchTerms = searchValue.split(/\s*\s\s*/)
     const { updateState } = this.props
-    updateState({searchTerms})
+    updateState({ searchTerms })
   },
 
   componentDidMount: function () {
@@ -44,7 +84,7 @@ const FilterSet = React.createClass({
         <div className="ui segment compact search-field">
           <i className="red search icon"></i>
           <span className="ui input small search-box">
-            <input ref="searchTerms" onChange={this.onSearch} id="filter-input" type="text" placeholder="Add search terms to refine results by ..." value={this.props.searchTerms.join(' ')}/>
+            <input ref="searchTerms" onChange={this.onSearch} id="filter-input" type="text" placeholder="Add search terms to refine results by ..." value={this.props.searchTerms.join(' ')} />
           </span>
         </div>
         <div className="ui segment">
@@ -145,16 +185,6 @@ const Footer = React.createClass({
   }
 })
 
-const SideBar = React.createClass({
-  render: function () {
-    return (
-      <aside className="options-pane">
-        <FilterSet {...this.props} />
-      </aside>
-    )
-  }
-})
-
 const VideoInfo = React.createClass({
   render: function () {
 
@@ -175,7 +205,7 @@ const VideoInfo = React.createClass({
         <div className="ui raised segment feed">
           <div className="event">
             <div className="label">
-                <img src={authorImage} />
+              <img src={authorImage} />
             </div>
             <div className="content">
               <div className="summary">
@@ -210,13 +240,17 @@ const VideoInfo = React.createClass({
 })
 
 const VideoList = React.createClass({
-  buildVideo: function(video) {
+  buildVideo: function (video) {
     return <VideoInfo key={video.uri} {...video} />
   },
 
   render: function () {
     const videos = this.props.videos.map(this.buildVideo)
-    return <main className="content-pane"> {videos} </main>
+    return (
+      <main className="content-pane">
+
+        {videos}
+      </main>)
   }
 })
 
@@ -281,8 +315,8 @@ const Application = React.createClass({
     return (
       <div className="container">
         <Header {...this.state} updateState={this.updateState} />
+        <Navigation {...this.props} />
         <VideoList videos={this.state.pages[this.state.index]} />
-        <SideBar {...this.state} updateState={this.updateState} />
         <Footer />
       </div>
     )

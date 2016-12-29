@@ -1,6 +1,6 @@
 window.com = window.com || {}
 window.com.schibsted = window.com.schibsted || {}
-window.com.schibsted.videosChannel = window.com.schibsted.videosChannel || {
+window.com.schibsted.videos = window.com.schibsted.videos || {
     "total": 151,
     "page": 1,
     "per_page": 50,

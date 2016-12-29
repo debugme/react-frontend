@@ -4,13 +4,13 @@ const FilterSet = React.createClass({
     const searchValue = event.target.value.trim()
     const searchTerms = searchValue.split(/\s*\s\s*/)
     const { updateState } = this.props
-    updateState({ searchTerms })
+    updateState({searchTerms})
   },
 
   componentDidMount: function () {
-    const searchTerms = this.props.searchTerms.join(' ')
-    const searchField = this.refs.search
-    searchField.value = searchTerms
+    const searchWords = this.props.searchTerms.join(' ')
+    const searchField = this.refs.searchTerms
+    searchField.value = searchWords
     const { updateState } = this.props
 
     $('.ui.dropdown#videosPerPage').dropdown({
@@ -44,12 +44,12 @@ const FilterSet = React.createClass({
         <div className="ui segment compact search-field">
           <i className="red search icon"></i>
           <span className="ui input small search-box">
-            <input ref="search" onChange={this.onSearch} id="filter-input" type="text" placeholder="Type to refine results ..." />
+            <input ref="searchTerms" onChange={this.onSearch} id="filter-input" type="text" placeholder="Add search terms to refine results by ..." value={this.props.searchTerms.join(' ')}/>
           </span>
         </div>
         <div className="ui segment">
           <i className="red unhide icon"></i>
-          <span className="small-text">Show</span>
+          <span className="small-text">Only show</span>
           <div className="ui inline dropdown" id="videosPerPage">
             <span className="text small-text">{this.props.videosPerPage}</span>
             <i className="dropdown icon"></i>
@@ -58,14 +58,14 @@ const FilterSet = React.createClass({
               <div className={show25} data-text="25"><span className="drop-down">25</span></div>
               <div className={show50} data-text="50"><span className="drop-down">50</span></div>
             </div>
-            <span className="small-text">videos on page</span>
+            <span className="small-text">videos per page</span>
           </div>
         </div>
         <div className="ui segment">
           <i className="red filter icon filter-icon"></i>
-          <span className="small-text">Filter by popular users?</span>
+          <span className="small-text">Filter videos by popular users</span>
           <div className="ui inline dropdown" id="popularVideos">
-            <span className="text small-text">No</span>
+            <span className="text small-text">{this.props.popularVideos ? 'Yes' : 'No'}</span>
             <i className="dropdown icon"></i>
             <div className="menu">
               <div className={showPopular} data-text="Yes"><span className="drop-down">Yes</span></div>
@@ -81,24 +81,24 @@ const FilterSet = React.createClass({
 const Header = React.createClass({
 
   componentDidMount: function () {
-    $('.ui.small.modal').modal({observeChanges: true});
-    $('span.menu').on('click', function(event) {
-      $('.ui.small.modal').modal({blurring: true}).modal('show')
+    $('.ui.small.modal').modal({ observeChanges: true });
+    $('span.menu').on('click', function (event) {
+      $('.ui.small.modal').modal({ blurring: true }).modal('show')
     })
   },
 
   render: function () {
     return (
       <header className="header-pane">
-          <span className="logo">Video Channel</span>
-          <span className="more">
-            <span className="menu"><i className="content icon"></i></span>
-            <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
-            <span className="name">Asad Razvi</span>
-          </span>
-          <div className="ui small modal center">
-            <FilterSet {...this.props} />
-          </div>
+        <span className="logo">Video Channel</span>
+        <span className="more">
+          <span className="menu"><i className="content icon"></i></span>
+          <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
+          <span className="name">Asad Razvi</span>
+        </span>
+        <div className="ui small modal center">
+          <FilterSet {...this.props} />
+        </div>
       </header>
     )
   }
@@ -110,10 +110,9 @@ const Footer = React.createClass({
       <footer className="footer-pane">
         <span>
           <a href="mailto:debugme@hotmail.com">
-            <i className="windows icon"></i>
-            <span className="text">HotMail</span>
+            <i className="send icon"></i>
+            <span className="text">E-Mail</span>
           </a>
-
           <a href="https://uk.linkedin.com/in/debugme" target="_blank">
             <i className="linkedin square icon"></i>
             <span className="text">LinkedIn</span>
@@ -206,7 +205,10 @@ const VideoInfo = React.createClass({
 })
 
 const VideoList = React.createClass({
-  buildVideo: video => <VideoInfo key={video.uri} {...video} />,
+  buildVideo: function(video) {
+    return <VideoInfo key={video.uri} {...video} />
+  },
+
   render: function () {
     const videos = this.props.videos.map(this.buildVideo)
     return <main className="content-pane"> {videos} </main>
@@ -215,39 +217,70 @@ const VideoList = React.createClass({
 
 const Application = React.createClass({
 
+  _hasSearchTerm: function (searchTerms, video) {
+    if (!video.description)
+      return false
+    if (!searchTerms.length)
+      return true
+    const description = video.description.toLowerCase()
+    const targetFound = searchTerms
+      .map(term => description.includes(term.toLowerCase()))
+      .filter(value => value === true)
+      .length > 0
+    return targetFound
+  },
+
+  _byPopularUser: function (popularVideos, video) {
+    if (!popularVideos)
+      return true
+    const popularUserLikes = 10
+    const userLikes = _.get(video, 'user.metadata.connections.likes.total', 0)
+    const isPopularVideo = userLikes >= popularUserLikes
+    return isPopularVideo
+  },
+
+  buildPageInfo: function ({searchTerms, videosPerPage, popularVideos, videosChannel, index = 0}) {
+    const videoHasSearchTerm = this._hasSearchTerm.bind(this, searchTerms)
+    const videoByPopularUser = this._byPopularUser.bind(this, popularVideos)
+    const filteredVideos = videosChannel
+      .filter(videoHasSearchTerm)
+      .filter(videoByPopularUser)
+    const pages = filteredVideos.length > 0 ? _.chunk(filteredVideos, videosPerPage) : [[]]
+    const pageInfo = { pages, index }
+    return pageInfo
+  },
+
   getDefaultProps: function () {
-    return {
-      searchTerms: [],
-      videosPerPage: 10,
-      popularVideos: false,
-      videosChannel: window.com.schibsted.videosChannel,
-      filteredVideo: window.com.schibsted.videosChannel.data
-    }
+    const searchTerms = []
+    const videosPerPage = 10
+    const popularVideos = false
+    const videosChannel = window.com.schibsted.videos.data
+    const props = { searchTerms, videosPerPage, popularVideos, videosChannel }
+    return props
   },
 
   getInitialState: function () {
-    return Object.assign({}, this.props)
+    const pageInfo = this.buildPageInfo(this.props)
+    const initialState = Object.assign({}, this.props, pageInfo)
+    return initialState
   },
 
-  updateState: function (newState) {
-    const state = Object.assign({}, this.state, newState)
-    const filteredVideo = this.getFilteredVideos(state)
-    this.setState(Object.assign(state, { filteredVideo }))
+  updateState: function (state) {
+    const newState = Object.assign({}, this.state, state)
+    const pageInfo = this.buildPageInfo(newState)
+    const finalState = Object.assign({}, newState, pageInfo)
+    this.setState(finalState)
   },
 
   render: function () {
     return (
       <div className="container">
         <Header {...this.state} updateState={this.updateState} />
-        <VideoList videos={this.state.filteredVideo} />
+        <VideoList videos={this.state.pages[this.state.index]} />
         <SideBar {...this.state} updateState={this.updateState} />
         <Footer />
       </div>
     )
-  },
-
-  getFilteredVideos: function ({searchTerms, videosPerPage, popularVideos, videosChannel, filteredVideo}) {
-    return filteredVideo
   }
 })
 

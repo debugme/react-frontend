@@ -237,7 +237,7 @@ const Application = React.createClass({
     const searchTerms = []
     const pageCount = 10
     const popularUsers = false
-    const videosChannel = window.com.schibsted.videos.data
+    const videosChannel = window.com.debugme.videos.data
     const props = { searchTerms, pageCount, popularUsers, videosChannel }
     return props
   },

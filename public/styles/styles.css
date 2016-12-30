@@ -56,6 +56,12 @@ body .container {
   font-style: italic;
 }
 
+.content-pane .meta .information {
+  border: solid rgba(118, 118, 118, 0.2) 1px;
+  border-radius: 4px;
+  background-color: rgba(118, 118, 118, 0.05);
+}
+
 .content-pane .ui.feed>.event>.content .meta a {
   color: rgba(0,0,0,.6);
   opacity: inherit;

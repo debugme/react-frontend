@@ -142,10 +142,12 @@ const VideoInfo = React.createClass({
                 {description}
               </div>
               <div className="meta">
-                <i className="red play icon"></i> {plays} <span className="text">plays</span>
-                <i className="red like icon"></i>{likes}<span className="text">likes</span>
-                <i className="red comments icon"></i> {comments} <span className="text">comments</span>
-                <a href={link} target="_blank"><i className="red linkify icon"></i>video<span className="text">link</span></a>
+                <span className="information">
+                  <i className="red play icon"></i>{plays}<span className="text">plays</span>
+                  <i className="red like icon"></i>{likes}<span className="text">likes</span>
+                  <i className="red comments icon"></i> {comments} <span className="text">comments</span>
+                  <a href={link} target="_blank"><i className="red linkify icon"></i>video<span className="text">link</span></a>
+                </span>
               </div>
             </div>
           </div>

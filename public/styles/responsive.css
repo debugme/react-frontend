@@ -15,6 +15,12 @@
     order: 2;
     padding: 1em 3em 0em 3em;
   }
+  .content-pane .meta .information {
+    display: flex;
+  }
+  .content-pane .text {
+    display: inline-flex;
+  }
   .content-pane .short-description {
     display: none;
   }
@@ -57,6 +63,12 @@
     order: 2;
     padding: 1em 2em 0em 2em;
   }
+  .content-pane .meta .information {
+    display: flex;
+  }
+  .content-pane .text {
+    display: none;
+  }
   .content-pane .short-description {
     display: block;
   }
@@ -76,7 +88,6 @@
   .footer-pane .view .large {
     display: none;
   }
-
 }
 
 /* Small Display */
@@ -102,9 +113,11 @@
     order: 2;
     padding: 1em 1em 0em 1em;
   }
-  .content-pane .meta {
-    display: block;
-    float: right;
+  .content-pane .meta .information {
+    display: none;
+  }
+  .content-pane .text {
+    display: inline-flex;
   }
   .content-pane .text {
     display: none;

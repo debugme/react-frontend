@@ -1,17 +1,17 @@
-span, div {
+div, header, nav, footer, main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-body .container {
-  display: flex;
+body .container, main  {
   flex-direction: column;
 }
 
 .header-pane {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 3em;
@@ -23,14 +23,10 @@ body .container {
 }
 
 .navigation-pane {
-  display: flex;
-  flex-direction: row;
   height: 4em;
 }
 
 .navigation-pane .filters {
-  display: flex;
-  flex-direction: row;
   justify-content: flex-end;
   padding: 1em 1.5em;
   flex: 1;
@@ -42,8 +38,6 @@ body .container {
 
 .navigation-pane .filters .search-terms {
   flex: 1;
-  display: flex;
-  flex-direction: row;
 }
 
 .navigation-pane .filters .search-terms .search-box {
@@ -78,23 +72,15 @@ body .container {
   margin: 0.3em 0 0 0;
 }
 
-.options-pane {
-  padding: 2em 2em 0em 0em;
-}
-
-.options-pane > section {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1em;
-}
-
-.description, .short-description {
+.content-pane .description, .short-description {
   margin: 0.8em 0;
 }
 
+.content-pane .ui.feed>.event>.content .meta .text {
+  margin-left: 0.3em;
+}
+
 .footer-pane {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   height: 3em;
@@ -105,6 +91,3 @@ body .container {
   margin-left: 1em;
 }
 
-.ui.feed>.event>.content .meta .text {
-  margin-left: 0.3em;
-}

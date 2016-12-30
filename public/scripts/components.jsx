@@ -95,7 +95,6 @@ const VideoList = React.createClass({
     const videos = this.props.videos.map(this.buildVideo)
     return (
       <main className="content-pane">
-
         {videos}
       </main>)
   }

@@ -1,38 +1,59 @@
 const Navigation = React.createClass({
 
-         // <span className="ui label search-box">
-          //   <i className="red search icon"></i>
-          //   <span className="ui input small search-box">
-          //     <input type="text" />
-          //   </span>
-          // </span>
+  componentDidMount: function() {
+
+    const self = this
+    const { updateState } = this.props
+
+    $('.popular-users').on('click', function(event) {
+      updateState({popularUsers : !self.props.popularUsers})
+    })
+
+    $('.page-count').on('click', function(event) {
+      switch (self.props.pageCount) {
+        case 10: return updateState({pageCount : 25})
+        case 25: return updateState({pageCount : 50})
+        case 50: return updateState({pageCount : 10})
+      }
+    })
+
+    $('.search-field').on('input', function(event) {
+      const searchValue = event.target.value.toLowerCase().trim()
+      const tokenValues = searchValue.split(/\s*\s\s*/)
+      const searchTerms = _.uniq(tokenValues)
+      updateState({ searchTerms })
+    })
+
+  },
 
   render: function () {
+
+    const { popularUsers, pageCount } = this.props
+
+    const classes = popularUsers === true ? 'red heart icon' : 'heart outline icon'
+
     return (
       <nav className="navigation-pane">
-
         <div className="toolbar">
 
-          <span className="ui label pagination">
-            <i className="left circle arrow icon"></i>
-            <span className="filter-text">1 of 5</span>
-            <i className="right circle arrow icon"></i>
+          <a className="ui label popular-users">
+            <span className="filter-text text">Popular Users</span>
+            <i className={classes} />
+          </a>
+
+          <a className="ui label page-count">
+            <span className="filter-text text">Page Count</span>
+            <span className="page-count">{pageCount}</span>
+          </a>
+
+          <span className="ui label search-terms">
+            <i className="search icon"></i>
+            <span className="ui inverted transparent icon input search-box">
+              <input className="search-field" type="text" placeholder="Add search terms here..." />
+            </span>
           </span>
-
-          <span className="ui label popular-user">
-            <span className="filter-text">Popular Users</span>
-            <i className="heart outline icon"></i>
-          </span>
-
-          <span className="ui label page-count">
-            <span className="filter-text">Page Count</span>
-            <span>10</span>
-          </span>
-
-
 
         </div>
-
       </nav>
     )
   }
@@ -53,15 +74,15 @@ const FilterSet = React.createClass({
     searchField.value = searchWords
     const { updateState } = this.props
 
-    $('.ui.dropdown#videosPerPage').dropdown({
-      onChange: function (videosPerPage) {
-        updateState({ videosPerPage: videosPerPage })
+    $('.ui.dropdown#pageCount').dropdown({
+      onChange: function (pageCount) {
+        updateState({ pageCount: pageCount })
       }
     })
 
-    $('.ui.dropdown#popularVideos').dropdown({
-      onChange: function (popularVideos) {
-        updateState({ popularVideos: popularVideos === "yes" })
+    $('.ui.dropdown#popularUsers').dropdown({
+      onChange: function (popularUsers) {
+        updateState({ popularUsers: popularUsers === "yes" })
       }
     })
   },
@@ -72,12 +93,12 @@ const FilterSet = React.createClass({
 
   render: function () {
 
-    const show10 = this.getClasses('videosPerPage', 10);
-    const show25 = this.getClasses('videosPerPage', 25);
-    const show50 = this.getClasses('videosPerPage', 50);
+    const show10 = this.getClasses('pageCount', 10);
+    const show25 = this.getClasses('pageCount', 25);
+    const show50 = this.getClasses('pageCount', 50);
 
-    const showPopular = this.getClasses('popularVideos', 'Yes')
-    const hidePopular = this.getClasses('popularVideos', 'No')
+    const showPopular = this.getClasses('popularUsers', 'Yes')
+    const hidePopular = this.getClasses('popularUsers', 'No')
 
     return (
       <div className="ui raised segments">
@@ -90,8 +111,8 @@ const FilterSet = React.createClass({
         <div className="ui segment">
           <i className="red unhide icon"></i>
           <span className="small-text">Only show</span>
-          <div className="ui inline dropdown" id="videosPerPage">
-            <span className="text small-text">{this.props.videosPerPage}</span>
+          <div className="ui inline dropdown" id="pageCount">
+            <span className="text small-text">{this.props.pageCount}</span>
             <i className="dropdown icon"></i>
             <div className="menu">
               <div className={show10} data-text="10"><span className="drop-down">10</span></div>
@@ -104,8 +125,8 @@ const FilterSet = React.createClass({
         <div className="ui segment">
           <i className="red filter icon filter-icon"></i>
           <span className="small-text">Filter videos by popular users</span>
-          <div className="ui inline dropdown" id="popularVideos">
-            <span className="text small-text">{this.props.popularVideos ? 'Yes' : 'No'}</span>
+          <div className="ui inline dropdown" id="popularUsers">
+            <span className="text small-text">{this.props.popularUsers ? 'Yes' : 'No'}</span>
             <i className="dropdown icon"></i>
             <div className="menu">
               <div className={showPopular} data-text="Yes"><span className="drop-down">Yes</span></div>
@@ -269,8 +290,8 @@ const Application = React.createClass({
     return targetFound
   },
 
-  _byPopularUser: function (popularVideos, video) {
-    if (!popularVideos)
+  _byPopularUser: function (popularUsers, video) {
+    if (!popularUsers)
       return true
     const popularUserLikes = 10
     const userLikes = _.get(video, 'user.metadata.connections.likes.total', 0)
@@ -278,23 +299,23 @@ const Application = React.createClass({
     return isPopularVideo
   },
 
-  buildPageInfo: function ({searchTerms, videosPerPage, popularVideos, videosChannel, index = 0}) {
+  buildPageInfo: function ({searchTerms, pageCount, popularUsers, videosChannel, index = 0}) {
     const videoHasSearchTerm = this._hasSearchTerm.bind(this, searchTerms)
-    const videoByPopularUser = this._byPopularUser.bind(this, popularVideos)
+    const videoByPopularUser = this._byPopularUser.bind(this, popularUsers)
     const filteredVideos = videosChannel
       .filter(videoHasSearchTerm)
       .filter(videoByPopularUser)
-    const pages = filteredVideos.length > 0 ? _.chunk(filteredVideos, videosPerPage) : [[]]
+    const pages = filteredVideos.length > 0 ? _.chunk(filteredVideos, pageCount) : [[]]
     const pageInfo = { pages, index }
     return pageInfo
   },
 
   getDefaultProps: function () {
     const searchTerms = []
-    const videosPerPage = 10
-    const popularVideos = false
+    const pageCount = 10
+    const popularUsers = false
     const videosChannel = window.com.schibsted.videos.data
-    const props = { searchTerms, videosPerPage, popularVideos, videosChannel }
+    const props = { searchTerms, pageCount, popularUsers, videosChannel }
     return props
   },
 
@@ -315,7 +336,7 @@ const Application = React.createClass({
     return (
       <div className="container">
         <Header {...this.state} updateState={this.updateState} />
-        <Navigation {...this.props} />
+        <Navigation {...this.state} updateState={this.updateState} />
         <VideoList videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>

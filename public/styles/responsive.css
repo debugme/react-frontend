@@ -2,9 +2,7 @@
 @media screen and (min-width: 900px) {
   .header-pane {
     padding: 0 2em;
-    width: 100vw;
     order: 0;
-    border: solid red 1px;
   }
   .header-pane .menu {
     display: none;
@@ -12,21 +10,17 @@
   .navigation-pane {
     order: 1;
     margin: 1em 3em 0em 3em;
-    border: solid red 1px;
   }
   .content-pane {
     order: 2;
     padding: 1em 3em 0em 3em;
-    border: solid red 1px;
   }
   .content-pane > section {
     margin-bottom: 1em;
   }
   .footer-pane {
     padding: 0 3em;
-    width: 100vw;
     order: 3;
-    border: solid red 1px;
   }
   .footer-pane .view .small {
     display: none;
@@ -37,7 +31,6 @@
   .footer-pane .view .large {
     display: inline-block;
   }
-
   .short-description {
     display: none;
   }
@@ -50,10 +43,7 @@
 @media screen and (max-width: 900px) {
   .header-pane {
     padding: 0 3em;
-    width: 100vw;
     order: 0;
-    border: solid orange 1px;
-
   }
   .header-pane .menu {
     display: inline-block;
@@ -65,21 +55,17 @@
   .navigation-pane {
     order: 1;
     margin: 1em 2em 0em 2em;
-    border: solid orange 1px;
   }
   .content-pane {
     order: 2;
     padding: 1em 2em 0em 2em;
-    border: solid orange 1px;
   }
   .content-pane > section {
     margin-bottom: 1em;
   }
   .footer-pane {
     padding: 0 2em;
-    width: 100vw;
     order: 3;
-    border: solid orange 1px;
   }
   .footer-pane .view .small {
     display: none;
@@ -102,9 +88,7 @@
 @media screen and (max-width: 700px) {
   .header-pane {
     padding: 0 1em;
-    width: 100vw;
     order: 0;
-    border: solid lawngreen 1px;
   }
   .header-pane .menu {
     display: inline-block;
@@ -115,12 +99,13 @@
   .navigation-pane {
     order: 1;
     margin: 1em 1em 0em 1em;
-    border: solid lawngreen 1px;
+  }
+  .navigation-pane .text {
+    display: none;
   }
   .content-pane {
     order: 2;
     padding: 1em 1em 0em 1em;
-    border: solid lawngreen 1px;
   }
   .content-pane > section {
     margin-bottom: 1em;
@@ -135,7 +120,6 @@
   .footer-pane {
     order: 3;
     padding: 0 1em;
-    border: solid lawngreen 1px;
   }
   .footer-pane .text {
     display: none;

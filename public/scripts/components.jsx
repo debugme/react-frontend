@@ -1,3 +1,18 @@
+const Header = React.createClass({
+
+  render: function () {
+    return (
+      <header className="header-pane">
+        <span className="logo">Video Channel</span>
+        <span>
+          <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
+          <span className="name">Asad Razvi</span>
+        </span>
+      </header>
+    )
+  }
+})
+
 const Navigation = React.createClass({
 
   componentDidMount: function () {
@@ -5,14 +20,14 @@ const Navigation = React.createClass({
     const self = this
     const { updateState } = this.props
 
-    $('a.pagination').on('click', function(event) {
+    $('a.pagination').on('click', function (event) {
       const value = self.props.index + 1
       const index = value % self.props.pages.length
       updateState({ index })
     })
 
     $('a.popular-users').on('click', function (event) {
-      updateState({ popularUsers: !self.props.popularUsers })
+      updateState({ index: 0, popularUsers: !self.props.popularUsers })
     })
 
     $('a.page-count').on('click', function (event) {
@@ -27,9 +42,8 @@ const Navigation = React.createClass({
       const searchValue = event.target.value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = _.uniq(tokenValues)
-      updateState({ searchTerms })
+      updateState({ index: 0, searchTerms })
     })
-
   },
 
   render: function () {
@@ -42,8 +56,7 @@ const Navigation = React.createClass({
 
     return (
       <nav className="navigation-pane">
-
-        <div className="toolbar">
+        <div className="filters">
 
           <a className="ui label pagination">
             <span className="filter-text text">Page</span>
@@ -73,150 +86,18 @@ const Navigation = React.createClass({
   }
 })
 
-const FilterSet = React.createClass({
-
-  onSearch: function (event) {
-    const searchValue = event.target.value.trim()
-    const searchTerms = searchValue.split(/\s*\s\s*/)
-    const { updateState } = this.props
-    updateState({ searchTerms })
-  },
-
-  componentDidMount: function () {
-    const searchWords = this.props.searchTerms.join(' ')
-    const searchField = this.refs.searchTerms
-    searchField.value = searchWords
-    const { updateState } = this.props
-
-    $('.ui.dropdown#pageCount').dropdown({
-      onChange: function (pageCount) {
-        updateState({ pageCount: pageCount })
-      }
-    })
-
-    $('.ui.dropdown#popularUsers').dropdown({
-      onChange: function (popularUsers) {
-        updateState({ popularUsers: popularUsers === "yes" })
-      }
-    })
-  },
-
-  getClasses: function (propName, propData) {
-    return ['item', this.props[propName] === propData ? 'active' : ''].join(' ')
+const VideoList = React.createClass({
+  buildVideo: function (video) {
+    return <VideoInfo key={video.uri} {...video} />
   },
 
   render: function () {
-
-    const show10 = this.getClasses('pageCount', 10);
-    const show25 = this.getClasses('pageCount', 25);
-    const show50 = this.getClasses('pageCount', 50);
-
-    const showPopular = this.getClasses('popularUsers', 'Yes')
-    const hidePopular = this.getClasses('popularUsers', 'No')
-
+    const videos = this.props.videos.map(this.buildVideo)
     return (
-      <div className="ui raised segments">
-        <div className="ui segment compact search-field">
-          <i className="red search icon"></i>
-          <span className="ui input small search-box">
-            <input ref="searchTerms" onChange={this.onSearch} id="filter-input" type="text" placeholder="Add search terms to refine results by ..." value={this.props.searchTerms.join(' ')} />
-          </span>
-        </div>
-        <div className="ui segment">
-          <i className="red unhide icon"></i>
-          <span className="small-text">Only show</span>
-          <div className="ui inline dropdown" id="pageCount">
-            <span className="text small-text">{this.props.pageCount}</span>
-            <i className="dropdown icon"></i>
-            <div className="menu">
-              <div className={show10} data-text="10"><span className="drop-down">10</span></div>
-              <div className={show25} data-text="25"><span className="drop-down">25</span></div>
-              <div className={show50} data-text="50"><span className="drop-down">50</span></div>
-            </div>
-            <span className="small-text">videos per page</span>
-          </div>
-        </div>
-        <div className="ui segment">
-          <i className="red filter icon filter-icon"></i>
-          <span className="small-text">Filter videos by popular users</span>
-          <div className="ui inline dropdown" id="popularUsers">
-            <span className="text small-text">{this.props.popularUsers ? 'Yes' : 'No'}</span>
-            <i className="dropdown icon"></i>
-            <div className="menu">
-              <div className={showPopular} data-text="Yes"><span className="drop-down">Yes</span></div>
-              <div className={hidePopular} data-text="No"><span className="drop-down">No</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-})
+      <main className="content-pane">
 
-const Header = React.createClass({
-
-  componentDidMount: function () {
-    $('.ui.small.modal').modal({ observeChanges: true });
-    $('span.menu').on('click', function (event) {
-      $('.ui.small.modal').modal({ blurring: true }).modal('show')
-    })
-  },
-
-  render: function () {
-    return (
-      <header className="header-pane">
-        <span className="logo">Video Channel</span>
-        <span className="more">
-          <span className="menu"><i className="content icon"></i></span>
-          <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
-          <span className="name">Asad Razvi</span>
-        </span>
-        <div className="ui small modal center">
-          <FilterSet {...this.props} />
-        </div>
-      </header>
-    )
-  }
-})
-
-const Footer = React.createClass({
-  render: function () {
-    return (
-      <footer className="footer-pane">
-        <span>
-          <a href="mailto:debugme@hotmail.com">
-            <i className="send icon"></i>
-            <span className="text">E-Mail</span>
-          </a>
-          <a href="https://uk.linkedin.com/in/debugme" target="_blank">
-            <i className="linkedin square icon"></i>
-            <span className="text">LinkedIn</span>
-          </a>
-          <a href="https://github.com/debugme" target="_blank">
-            <i className="github icon"></i>
-            <span className="text">GitHub</span>
-          </a>
-          <a href="https://debugme.wordpress.com/" target="_blank">
-            <i className="wordpress icon"></i>
-            <span className="text">WordPress</span>
-          </a>
-          <span className="view">
-            <span className="small">
-              <i className="red tablet icon"></i>
-              <span className="text">Small</span>
-            </span>
-            <span className="medium">
-              <i className="red laptop icon"></i>
-              <span className="text">Medium</span>
-            </span>
-            <span className="large">
-              <i className="red desktop icon"></i>
-              <span className="text">Large</span>
-            </span>
-          </span>
-        </span>
-      </footer>
-    )
+        {videos}
+      </main>)
   }
 })
 
@@ -274,18 +155,44 @@ const VideoInfo = React.createClass({
   }
 })
 
-const VideoList = React.createClass({
-  buildVideo: function (video) {
-    return <VideoInfo key={video.uri} {...video} />
-  },
-
+const Footer = React.createClass({
   render: function () {
-    const videos = this.props.videos.map(this.buildVideo)
     return (
-      <main className="content-pane">
-
-        {videos}
-      </main>)
+      <footer className="footer-pane">
+        <span>
+          <a href="mailto:debugme@hotmail.com">
+            <i className="send icon"></i>
+            <span className="text">E-Mail</span>
+          </a>
+          <a href="https://uk.linkedin.com/in/debugme" target="_blank">
+            <i className="linkedin square icon"></i>
+            <span className="text">LinkedIn</span>
+          </a>
+          <a href="https://github.com/debugme" target="_blank">
+            <i className="github icon"></i>
+            <span className="text">GitHub</span>
+          </a>
+          <a href="https://debugme.wordpress.com/" target="_blank">
+            <i className="wordpress icon"></i>
+            <span className="text">WordPress</span>
+          </a>
+          <span className="view">
+            <span className="small">
+              <i className="red tablet icon"></i>
+              <span className="text">Small</span>
+            </span>
+            <span className="medium">
+              <i className="red laptop icon"></i>
+              <span className="text">Medium</span>
+            </span>
+            <span className="large">
+              <i className="red desktop icon"></i>
+              <span className="text">Large</span>
+            </span>
+          </span>
+        </span>
+      </footer>
+    )
   }
 })
 

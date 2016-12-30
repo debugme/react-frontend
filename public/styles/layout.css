@@ -1,0 +1,110 @@
+span, div {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-pane {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 3em;
+  width: 100vw;
+}
+
+.header-pane .menu {
+  margin-top: 0.1em;
+}
+
+.navigation-pane {
+  display: flex;
+  flex-direction: row;
+  height: 4em;
+}
+
+.navigation-pane .filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1em 1.5em;
+  flex: 1;
+}
+
+.filters i.icon {
+  margin: 0;
+}
+
+.navigation-pane .filters .search-terms {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-pane .filters .search-terms .search-box {
+  flex: 1;
+  padding-right: 0;
+}
+
+.navigation-pane .filters .search-terms .search.icon {
+  margin-right: 0.6em;
+}
+
+.navigation-pane .filter-text {
+  margin: 0 0.5em;
+}
+
+.navigation-pane .ui.label>.icon {
+  margin: 0;
+}
+
+.navigation-pane .ui.input input {
+  padding: 0 1em 0 1em;
+}
+
+.content-pane {
+  width: 100vw;
+  height: calc(100vh - (3em + 3em + 4em + 2em));
+  overflow: auto;
+  padding: 0em 2em 0em 2em;
+}
+
+.content-pane .video-title {
+  margin: 0.3em 0 0 0;
+}
+
+.options-pane {
+  padding: 2em 2em 0em 0em;
+}
+
+.options-pane > section {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.description, .short-description {
+  margin: 0.8em 0;
+}
+
+.footer-pane {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3em;
+  width: 100vw;
+}
+
+.footer-pane i {
+  margin-left: 1em;
+}
+
+.ui.feed>.event>.content .meta .text {
+  margin-left: 0.3em;
+}

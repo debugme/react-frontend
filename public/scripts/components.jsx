@@ -86,7 +86,8 @@ const Navigation = React.createClass({
   }
 })
 
-const VideoList = React.createClass({
+const Content = React.createClass({
+
   buildVideo: function (video) {
     return <VideoInfo key={video.uri} {...video} />
   },
@@ -257,7 +258,7 @@ const Application = React.createClass({
       <div className="container">
         <Header {...this.state} updateState={this.updateState} />
         <Navigation {...this.state} updateState={this.updateState} />
-        <VideoList videos={this.state.pages[this.state.index]} />
+        <Content videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>
     )

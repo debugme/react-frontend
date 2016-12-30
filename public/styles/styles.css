@@ -12,18 +12,9 @@ body .container {
   letter-spacing: 0.2em;
 }
 
-.header-pane .menu {
-  font-size: 1.2rem;
-}
-
 .navigation-pane .filters {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
-}
-
-.navigation-pane .filters .pagination .prev,
-.navigation-pane .filters .pagination .next {
-  opacity: 1.0;
 }
 
 .navigation-pane .filters .search-terms .ui.transparent.inverted.input input {
@@ -43,7 +34,7 @@ body .container {
 }
 
 .navigation-pane .ui.label {
-  background-color:  #1B1C1D;
+  background-color: #1B1C1D;
   color: #4183C4;
 }
 
@@ -52,19 +43,15 @@ body .container {
 }
 
 .navigation-pane a.ui.label:hover {
-  background-color:  #1B1C1D;
+  background-color: #1B1C1D;
 }
 
 /* Hide scrollbars as they look ugly! */
-::-webkit-scrollbar {
+.content-pane::-webkit-scrollbar {
   display: none;
 }
 
-.options-pane > section {
-  color: #767676;
-}
-
-.description, .short-description {
+.content-pane .description, .content-pane .short-description {
   font-size: 0.9rem;
   font-style: italic;
 }

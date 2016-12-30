@@ -28,7 +28,7 @@ body .container, main  {
 
 .navigation-pane .filters {
   justify-content: flex-end;
-  padding: 1em 1.5em;
+  padding: 1em 1em;
   flex: 1;
 }
 
@@ -37,6 +37,7 @@ body .container, main  {
 }
 
 .navigation-pane .filters .search-terms {
+  display: flex;
   flex: 1;
 }
 

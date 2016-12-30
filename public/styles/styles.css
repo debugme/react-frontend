@@ -47,6 +47,15 @@ body .container {
   flex: 1;
 }
 
+.navigation-pane .toolbar .pagination .prev,
+.navigation-pane .toolbar .pagination .next {
+  opacity: 1.0;
+}
+
+.toolbar i.icon {
+  margin: 0;
+}
+
 .navigation-pane .toolbar .search-terms {
   flex: 1;
   display: flex;
@@ -58,6 +67,10 @@ body .container {
   padding-right: 0;
 }
 
+.navigation-pane .toolbar .search-terms .ui.transparent.inverted.input input {
+  color: #DB2828;
+}
+
 .navigation-pane .toolbar .search-terms .search.icon {
   margin-right: 0.6em;
 }
@@ -67,8 +80,11 @@ body .container {
   margin: 0 0.5em;
 }
 
+.navigation-pane .pagination {
+  color: #4183C4;
+}
+
 .navigation-pane .page-count {
-  /*color: #DB2828;*/
   color: #4183C4;
 }
 

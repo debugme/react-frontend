@@ -1,23 +1,29 @@
 const Navigation = React.createClass({
 
-  componentDidMount: function() {
+  componentDidMount: function () {
 
     const self = this
     const { updateState } = this.props
 
-    $('.popular-users').on('click', function(event) {
-      updateState({popularUsers : !self.props.popularUsers})
+    $('a.pagination').on('click', function(event) {
+      const value = self.props.index + 1
+      const index = value % self.props.pages.length
+      updateState({ index })
     })
 
-    $('.page-count').on('click', function(event) {
+    $('a.popular-users').on('click', function (event) {
+      updateState({ popularUsers: !self.props.popularUsers })
+    })
+
+    $('a.page-count').on('click', function (event) {
       switch (self.props.pageCount) {
-        case 10: return updateState({pageCount : 25})
-        case 25: return updateState({pageCount : 50})
-        case 50: return updateState({pageCount : 10})
+        case 10: return updateState({ pageCount: 25 })
+        case 25: return updateState({ pageCount: 50 })
+        case 50: return updateState({ pageCount: 10 })
       }
     })
 
-    $('.search-field').on('input', function(event) {
+    $('.search-field').on('input', function (event) {
       const searchValue = event.target.value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = _.uniq(tokenValues)
@@ -29,12 +35,20 @@ const Navigation = React.createClass({
   render: function () {
 
     const { popularUsers, pageCount } = this.props
-
+    const currentPage = this.props.index + 1
+    const totalPages = this.props.pages.length
+    const pageMessage = totalPages === 1 ? currentPage : `${currentPage} / ${totalPages}`
     const classes = popularUsers === true ? 'red heart icon' : 'heart outline icon'
 
     return (
       <nav className="navigation-pane">
+
         <div className="toolbar">
+
+          <a className="ui label pagination">
+            <span className="filter-text text">Page</span>
+            <span className="pagination">{pageMessage}</span>
+          </a>
 
           <a className="ui label popular-users">
             <span className="filter-text text">Popular Users</span>
@@ -49,7 +63,7 @@ const Navigation = React.createClass({
           <span className="ui label search-terms">
             <i className="search icon"></i>
             <span className="ui inverted transparent icon input search-box">
-              <input className="search-field" type="text" placeholder="Add search terms here..." />
+              <input className="search-field" type="text" placeholder="Filter ..." />
             </span>
           </span>
 

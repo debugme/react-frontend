@@ -7,11 +7,15 @@ const Header = React.createClass({
   },
 
   render: function () {
+
+    const { filtersActive } = this.props
+    const classes = filtersActive ? 'filter-active content icon' : 'filter-inactive content icon'
+
     return (
       <header className="header-pane">
         <span className="logo">Video Channel</span>
         <span>
-          <i className="content icon"></i>
+          <a href="#"><i className={classes}></i></a>
           <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
           <span className="name">Asad Razvi</span>
         </span>
@@ -24,33 +28,12 @@ const Navigation = React.createClass({
 
   componentDidMount: function () {
 
-    const self = this
-    const { updateState } = this.props
+    const { updateState, moveToNextPage, togglePageCount, togglePopularUsers, triggerSearch } = this.props
 
-    $('a.pagination').on('click', function (event) {
-      const value = self.props.index + 1
-      const index = value % self.props.pages.length
-      updateState({ index })
-    })
-
-    $('a.popular-users').on('click', function (event) {
-      updateState({ index: 0, popularUsers: !self.props.popularUsers })
-    })
-
-    $('a.page-count').on('click', function (event) {
-      switch (self.props.pageCount) {
-        case 10: return updateState({ pageCount: 25 })
-        case 25: return updateState({ pageCount: 50 })
-        case 50: return updateState({ pageCount: 10 })
-      }
-    })
-
-    $('.search-field').on('input', function (event) {
-      const searchValue = event.target.value.toLowerCase().trim()
-      const tokenValues = searchValue.split(/\s*\s\s*/)
-      const searchTerms = _.uniq(tokenValues)
-      updateState({ index: 0, searchTerms })
-    })
+    $('a.pagination').on('click', moveToNextPage)
+    $('a.popular-users').on('click', togglePopularUsers)
+    $('a.page-count').on('click', togglePageCount)
+    $('.search-field').on('input', triggerSearch)
   },
 
   render: function () {
@@ -70,20 +53,20 @@ const Navigation = React.createClass({
             <span className="pagination">{pageMessage}</span>
           </a>
 
-          <a className="ui label popular-users">
-            <span className="filter-text text">Popular Users</span>
-            <i className={classes} />
-          </a>
-
           <a className="ui label page-count">
             <span className="filter-text text">Page Count</span>
             <span className="page-count">{pageCount}</span>
           </a>
 
+          <a className="ui label popular-users">
+            <span className="filter-text text">Popular Users</span>
+            <i className={classes} />
+          </a>
+
           <span className="ui label search-terms">
             <i className="search icon"></i>
             <span className="ui inverted transparent icon input search-box">
-              <input className="search-field" type="text" placeholder="Filter ..." />
+              <input className="search-field" type="text" />
             </span>
           </span>
 
@@ -251,7 +234,8 @@ const Application = React.createClass({
 
   getInitialState: function () {
     const pageInfo = this.buildPageInfo(this.props)
-    const initialState = Object.assign({}, this.props, pageInfo)
+    const filterStatus = { filtersActive: false }
+    const initialState = Object.assign({}, this.props, pageInfo, filterStatus)
     return initialState
   },
 
@@ -262,11 +246,37 @@ const Application = React.createClass({
     this.setState(finalState)
   },
 
+  moveToNextPage: function() {
+    const value = this.state.index + 1
+    const index = value % this.state.pages.length
+    this.updateState({ index })
+  },
+
+  togglePageCount: function() {
+    switch (this.state.pageCount) {
+      case 10: return this.updateState({ index: 0, pageCount: 25 })
+      case 25: return this.updateState({ index: 0, pageCount: 50 })
+      case 50: return this.updateState({ index: 0, pageCount: 10 })
+    }
+  },
+
+  togglePopularUsers: function() {
+    this.updateState({ index: 0, popularUsers: !this.state.popularUsers, filtersActive: (!this.state.popularUsers === true) })
+  },
+
+  triggerSearch: function(event) {
+      const searchValue = event.target.value.toLowerCase().trim()
+      const tokenValues = searchValue.split(/\s*\s\s*/)
+      const searchTerms = _.uniq(tokenValues).filter(value => value.length)
+      console.log('search-terms', searchTerms)
+      this.updateState({ index: 0, searchTerms, filtersActive: (searchTerms.length > 0) })
+  },
+
   render: function () {
     return (
       <div className="container">
         <Header {...this.state} updateState={this.updateState} />
-        <Navigation {...this.state} updateState={this.updateState} />
+        <Navigation {...this.state} updateState={this.updateState} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
         <Content videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>

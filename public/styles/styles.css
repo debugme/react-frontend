@@ -12,6 +12,19 @@ body .container {
   letter-spacing: 0.2em;
 }
 
+.header-pane .filter-active {
+  color: #DB2828;
+}
+
+.header-pane .filter-inactive {
+  color: inherit;
+}
+
+.header-pane  a:link, a:visited, a:hover, a:active {
+  color: #4183C4;
+  opacity: 1;
+}
+
 .navigation-pane .filters .search-terms .ui.transparent.inverted.input input {
   color: #DB2828;
 }

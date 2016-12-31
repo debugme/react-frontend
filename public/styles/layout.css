@@ -30,12 +30,13 @@ body .container, main  {
 }
 
 .navigation-pane {
-  flex-basis: 4em;
+  flex-basis: 3em;
+  display: none;
 }
 
 .navigation-pane .filters {
   justify-content: flex-end;
-  padding: 1em 1em;
+  padding: 1em 1em 0em 1em;
   flex: 1;
 }
 

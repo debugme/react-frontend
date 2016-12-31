@@ -17,32 +17,32 @@
 /* Medium Display */
 @media screen and (max-width: 900px) {
   .header-pane {
-    border: solid darkorange 1px;
+    border: solid orange 1px;
   }
   .navigation-pane {
-    border: solid darkorange 1px;
+    border: solid orange 1px;
   }
   .content-pane {
-    border: solid darkorange 1px;
+    border: solid orange 1px;
   }
   .footer-pane {
-    border: solid darkorange 1px;
+    border: solid orange 1px;
   }
 }
 
 /* Small Display */
 @media screen and (max-width: 700px) {
   .header-pane {
-    border: solid lawngreen 1px;
+    border: solid green 1px;
   }
   .navigation-pane {
-    border: solid lawngreen 1px;
+    border: solid green 1px;
   }
   .content-pane {
-    border: solid lawngreen 1px;
+    border: solid green 1px;
   }
   .footer-pane {
-    border: solid lawngreen 1px;
+    border: solid green 1px;
   }
 }
 

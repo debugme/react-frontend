@@ -12,11 +12,6 @@ body .container {
   letter-spacing: 0.2em;
 }
 
-.navigation-pane .filters {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0.3em;
-}
-
 .navigation-pane .filters .search-terms .ui.transparent.inverted.input input {
   color: #DB2828;
 }

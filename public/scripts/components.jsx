@@ -1,5 +1,11 @@
 const Header = React.createClass({
 
+  componentDidMount: function() {
+    $('.content.icon').on('click', function() {
+      $('.navigation-pane').toggle('display')
+    })
+  },
+
   render: function () {
     return (
       <header className="header-pane">

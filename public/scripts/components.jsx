@@ -5,6 +5,7 @@ const Header = React.createClass({
       <header className="header-pane">
         <span className="logo">Video Channel</span>
         <span>
+          <i className="content icon"></i>
           <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
           <span className="name">Asad Razvi</span>
         </span>

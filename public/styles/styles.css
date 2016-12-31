@@ -14,7 +14,7 @@ body .container {
 
 .navigation-pane .filters {
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  border-radius: 0.3em;
 }
 
 .navigation-pane .filters .search-terms .ui.transparent.inverted.input input {
@@ -57,9 +57,13 @@ body .container {
 }
 
 .content-pane .meta .information {
-  border: solid rgba(118, 118, 118, 0.2) 1px;
-  border-radius: 4px;
+  border: solid rgba(118, 118, 118, 0.2) 0.08em;
+  border-radius: 0.3em;
   background-color: rgba(118, 118, 118, 0.05);
+}
+
+.content-pane .text:not(:last-child) {
+  border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
 }
 
 .content-pane .ui.feed>.event>.content .meta a {

@@ -2,6 +2,8 @@ div, header, nav, footer, main {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex-grow: 0;
+  flex-shrink: 0;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -9,21 +11,26 @@ div, header, nav, footer, main {
 
 body .container, main  {
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 .header-pane {
   align-items: center;
   justify-content: space-between;
-  height: 3em;
-  width: 100vw;
+  flex-basis: 3em;
 }
 
-.header-pane .menu {
-  margin-top: 0.1em;
+.header-pane .content.icon {
+  margin-right: 1em;
+}
+
+.header-pane .ui.avatar.image {
+  margin-right: 0.8em;
 }
 
 .navigation-pane {
-  height: 4em;
+  flex-basis: 4em;
 }
 
 .navigation-pane .filters {
@@ -64,12 +71,15 @@ body .container, main  {
 
 .content-pane {
   width: 100vw;
-  height: calc(100vh - (3em + 3em + 4em + 2em));
+  /*flex-basis: calc(100vh - (3em + 3em + 4em + 2em));*/
+  flex-grow: 1;
+  flex-shrink: 1;
   overflow: auto;
   padding: 0em 2em 0em 2em;
 }
 
 .content-pane > section {
+  display: block;
   margin-bottom: 1em;
 }
 
@@ -91,6 +101,10 @@ body .container, main  {
   padding: 0.2em 0.5em 0.1em 0.5em;
 }
 
+.content-pane .text:not(:last-child) {
+  padding-right: 1em;
+}
+
 .content-pane .meta .information .icon {
   margin-left: 0.5em;
   margin-right: 0.2em;
@@ -103,8 +117,7 @@ body .container, main  {
 .footer-pane {
   align-items: center;
   justify-content: flex-end;
-  height: 3em;
-  width: 100vw;
+  flex-basis: 3em;
 }
 
 .footer-pane i {

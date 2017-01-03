@@ -94,7 +94,7 @@ const Content = React.createClass({
 const VideoInfo = React.createClass({
   render: function () {
 
-    const { user, name, link, description, modified_time, stats, metadata } = this.props
+    const { user, name, link, embed, description, modified_time, stats, metadata } = this.props
 
     const authorImage = _.get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
     const authorName = _.get(user, 'name')
@@ -103,7 +103,7 @@ const VideoInfo = React.createClass({
     const comments = _.get(metadata, 'connections.comments.total', '0')
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
-
+    const embedHtml = embed.html.replace('<iframe', '<iframe class="video-player"')
     const shortDescription = _.truncate(description, { length: 500, omission: '...' })
 
     return (
@@ -120,11 +120,11 @@ const VideoInfo = React.createClass({
                   <span className="text">{lastModified}</span>
                 </div>
               </div>
-
               <div className="video-title">
                 <h3 className="ui header"><a className="user" href={link} target="_blank">{name}</a></h3>
               </div>
-
+              <div className="video-holder" dangerouslySetInnerHTML={{__html: embedHtml}}>
+              </div>
               <div className="short-description">
                 {shortDescription}
               </div>
@@ -151,7 +151,7 @@ const Footer = React.createClass({
   render: function () {
     return (
       <footer className="footer-pane">
-        <span>
+        <span className="social-links">
           <a href="mailto:debugme@hotmail.com">
             <i className="send icon"></i>
             <span className="text">E-Mail</span>
@@ -212,7 +212,19 @@ const Application = React.createClass({
     return isPopularVideo
   },
 
-  buildPageInfo: function ({searchTerms, pageCount, popularUsers, videosChannel, index = 0}) {
+  _filtersActive: function({searchTerms, pageCount, popularUsers, index}) {
+    if (searchTerms.length > 0)
+      return true
+    if (pageCount !== 10)
+      return true
+    if (popularUsers === true)
+      return true
+    if (index !== 0)
+      return true
+    return false
+  },
+
+  _buildPageInfo: function ({searchTerms, pageCount, popularUsers, videosChannel, index = 0}) {
     const videoHasSearchTerm = this._hasSearchTerm.bind(this, searchTerms)
     const videoByPopularUser = this._byPopularUser.bind(this, popularUsers)
     const filteredVideos = videosChannel
@@ -233,7 +245,7 @@ const Application = React.createClass({
   },
 
   getInitialState: function () {
-    const pageInfo = this.buildPageInfo(this.props)
+    const pageInfo = this._buildPageInfo(this.props)
     const filterStatus = { filtersActive: false }
     const initialState = Object.assign({}, this.props, pageInfo, filterStatus)
     return initialState
@@ -241,9 +253,9 @@ const Application = React.createClass({
 
   updateState: function (state) {
     const newState = Object.assign({}, this.state, state)
-    const pageInfo = this.buildPageInfo(newState)
+    const pageInfo = this._buildPageInfo(newState)
     const finalState = Object.assign({}, newState, pageInfo)
-    this.setState(finalState)
+    this.setState(Object.assign(finalState, { filtersActive: this._filtersActive(finalState)}))
   },
 
   moveToNextPage: function() {
@@ -261,7 +273,7 @@ const Application = React.createClass({
   },
 
   togglePopularUsers: function() {
-    this.updateState({ index: 0, popularUsers: !this.state.popularUsers, filtersActive: (!this.state.popularUsers === true) })
+    this.updateState({ index: 0, popularUsers: !this.state.popularUsers })
   },
 
   triggerSearch: function(event) {
@@ -269,7 +281,7 @@ const Application = React.createClass({
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = _.uniq(tokenValues).filter(value => value.length)
       console.log('search-terms', searchTerms)
-      this.updateState({ index: 0, searchTerms, filtersActive: (searchTerms.length > 0) })
+      this.updateState({ index: 0, searchTerms })
   },
 
   render: function () {

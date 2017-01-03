@@ -9,7 +9,10 @@
   }
   .navigation-pane {
     order: 1;
-    margin: 0em 2em 0em 2em;
+  }
+  .navigation-pane .filters {
+    padding-left: 3em;
+    padding-right: 3em;
   }
   .content-pane {
     order: 2;
@@ -63,7 +66,10 @@
   }
   .navigation-pane {
     order: 1;
-    margin: 0em 1em 0em 1em;
+  }
+  .navigation-pane .filters {
+    padding-left: 2em;
+    padding-right: 2em;
   }
   .content-pane {
     order: 2;
@@ -116,7 +122,10 @@
   }
   .navigation-pane {
     order: 1;
-    margin: 0em 0em 0em 0em;
+  }
+  .navigation-pane .filters {
+    padding-left: 1em;
+    padding-right: 1em;
   }
   .navigation-pane .text {
     display: none;

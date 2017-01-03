@@ -1,5 +1,5 @@
 /* Large Display */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   .header-pane {
     border: solid red 1px;
   }

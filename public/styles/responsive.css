@@ -21,6 +21,10 @@
   .content-pane .meta .information {
     display: flex;
   }
+  .content-pane .info:not(:nth-last-child(2)) {
+    padding: 0;
+    border: none;
+  }
   .content-pane .text {
     display: inline-flex;
   }
@@ -78,6 +82,10 @@
   .content-pane .meta .information {
     display: flex;
   }
+  .content-pane .info:not(:nth-last-child(2)) {
+    padding-right: 1em;
+    border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
+  }
   .content-pane .text {
     display: none;
   }
@@ -126,6 +134,10 @@
   .navigation-pane .filters {
     padding-left: 1em;
     padding-right: 1em;
+  }
+  .content-pane .info:not(:nth-last-child(2)) {
+    padding: 0;
+    border: none;
   }
   .navigation-pane .text {
     display: none;

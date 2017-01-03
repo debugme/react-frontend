@@ -15,7 +15,7 @@ const Header = React.createClass({
       <header className="header-pane">
         <span className="logo">Video Channel</span>
         <span>
-          <a href="#"><i className={classes}></i></a>
+          <a href="#" className="menu"><i className={classes}></i></a>
           <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
           <span className="name">Asad Razvi</span>
         </span>
@@ -103,7 +103,7 @@ const VideoInfo = React.createClass({
     const comments = _.get(metadata, 'connections.comments.total', '0')
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
-    const shortDescription = _.truncate(description, { length: 500, omission: '...' })
+    const shortDescription = _.truncate(description, { length: 300, omission: '...' })
 
     return (
       <section>

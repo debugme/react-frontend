@@ -5,7 +5,8 @@
     order: 0;
   }
   .header-pane .menu {
-    display: none;
+    display: inline-block;
+    margin-right: 0.5em;
   }
   .navigation-pane {
     order: 1;
@@ -123,7 +124,7 @@
     order: 0;
   }
   .header-pane .menu {
-    display: inline-block;
+    display: none;
   }
   .header-pane .name {
     display: none;

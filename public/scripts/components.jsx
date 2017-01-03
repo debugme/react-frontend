@@ -94,7 +94,7 @@ const Content = React.createClass({
 const VideoInfo = React.createClass({
   render: function () {
 
-    const { user, name, link, embed, description, modified_time, stats, metadata } = this.props
+    const { user, name, link, description, modified_time, stats, metadata } = this.props
 
     const authorImage = _.get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
     const authorName = _.get(user, 'name')
@@ -103,7 +103,6 @@ const VideoInfo = React.createClass({
     const comments = _.get(metadata, 'connections.comments.total', '0')
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
-    const embedHtml = embed.html.replace('<iframe', '<iframe class="video-player"')
     const shortDescription = _.truncate(description, { length: 500, omission: '...' })
 
     return (
@@ -122,8 +121,6 @@ const VideoInfo = React.createClass({
               </div>
               <div className="video-title">
                 <h3 className="ui header"><a className="user" href={link} target="_blank">{name}</a></h3>
-              </div>
-              <div className="video-holder" dangerouslySetInnerHTML={{__html: embedHtml}}>
               </div>
               <div className="short-description">
                 {shortDescription}

@@ -1,5 +1,5 @@
 /* Large Display */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   .header-pane {
     padding: 0 3em;
     order: 0;
@@ -14,9 +14,6 @@
   .content-pane {
     order: 2;
     padding: 1em 3em 0em 3em;
-  }
-  .content-pane .video-holder {
-    display: block;
   }
   .content-pane .meta .information {
     display: flex;
@@ -71,9 +68,6 @@
   .content-pane {
     order: 2;
     padding: 1em 2em 0em 2em;
-  }
-  .content-pane .video-holder {
-    display: block;
   }
   .content-pane .meta .information {
     display: flex;
@@ -131,9 +125,7 @@
     order: 2;
     padding: 1em 1em 0em 1em;
   }
-  .content-pane .video-holder {
-    display: none;
-  }
+
   .content-pane .meta .information {
     display: none;
   }

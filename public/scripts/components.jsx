@@ -28,7 +28,7 @@ const Navigation = React.createClass({
 
   componentDidMount: function () {
 
-    const { updateState, moveToNextPage, togglePageCount, togglePopularUsers, triggerSearch } = this.props
+    const { moveToNextPage, togglePageCount, togglePopularUsers, triggerSearch } = this.props
 
     $('a.pagination').on('click', moveToNextPage)
     $('a.popular-users').on('click', togglePopularUsers)
@@ -277,15 +277,14 @@ const Application = React.createClass({
       const searchValue = event.target.value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = _.uniq(tokenValues).filter(value => value.length)
-      console.log('search-terms', searchTerms)
       this.updateState({ index: 0, searchTerms })
   },
 
   render: function () {
     return (
       <div className="container">
-        <Header {...this.state} updateState={this.updateState} />
-        <Navigation {...this.state} updateState={this.updateState} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
+        <Header {...this.state} />
+        <Navigation {...this.state} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
         <Content videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>

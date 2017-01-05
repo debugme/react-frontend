@@ -232,6 +232,13 @@ const Application = React.createClass({
     return pageInfo
   },
 
+  _updateState: function (state) {
+    const newState = Object.assign({}, this.state, state)
+    const pageInfo = this._buildPageInfo(newState)
+    const finalState = Object.assign({}, newState, pageInfo)
+    this.setState(Object.assign(finalState, { filtersActive: this._filtersActive(finalState)}))
+  },
+
   getDefaultProps: function () {
     const searchTerms = []
     const pageCount = 10
@@ -248,36 +255,31 @@ const Application = React.createClass({
     return initialState
   },
 
-  updateState: function (state) {
-    const newState = Object.assign({}, this.state, state)
-    const pageInfo = this._buildPageInfo(newState)
-    const finalState = Object.assign({}, newState, pageInfo)
-    this.setState(Object.assign(finalState, { filtersActive: this._filtersActive(finalState)}))
-  },
+
 
   moveToNextPage: function() {
     const value = this.state.index + 1
     const index = value % this.state.pages.length
-    this.updateState({ index })
+    this._updateState({ index })
   },
 
   togglePageCount: function() {
     switch (this.state.pageCount) {
-      case 10: return this.updateState({ index: 0, pageCount: 25 })
-      case 25: return this.updateState({ index: 0, pageCount: 50 })
-      case 50: return this.updateState({ index: 0, pageCount: 10 })
+      case 10: return this._updateState({ index: 0, pageCount: 25 })
+      case 25: return this._updateState({ index: 0, pageCount: 50 })
+      case 50: return this._updateState({ index: 0, pageCount: 10 })
     }
   },
 
   togglePopularUsers: function() {
-    this.updateState({ index: 0, popularUsers: !this.state.popularUsers })
+    this._updateState({ index: 0, popularUsers: !this.state.popularUsers })
   },
 
   triggerSearch: function(event) {
       const searchValue = event.target.value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = _.uniq(tokenValues).filter(value => value.length)
-      this.updateState({ index: 0, searchTerms })
+      this._updateState({ index: 0, searchTerms })
   },
 
   render: function () {

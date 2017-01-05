@@ -255,8 +255,6 @@ const Application = React.createClass({
     return initialState
   },
 
-
-
   moveToNextPage: function() {
     const value = this.state.index + 1
     const index = value % this.state.pages.length

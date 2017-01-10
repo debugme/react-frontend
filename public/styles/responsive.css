@@ -124,7 +124,8 @@
     order: 0;
   }
   .header-pane .menu {
-    display: none;
+    display: inline-block;
+    margin-right: 0.5em;
   }
   .header-pane .name {
     display: none;

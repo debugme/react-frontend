@@ -149,7 +149,7 @@
     padding: 1em 1em 0em 1em;
   }
 
-  .content-pane .meta .information {
+  .content-pane .meta .information .info {
     display: none;
   }
   .content-pane .text {

@@ -7,10 +7,7 @@ const Header = React.createClass({
   },
 
   render: function () {
-
-    const { filtersActive } = this.props
-    const classes = filtersActive ? 'filter-active content icon' : 'filter-inactive content icon'
-
+    const classes = this.props.filtersActive ? 'filter-active content icon' : 'filter-inactive content icon'
     return (
       <header className="header-pane">
         <span className="logo">Video Channel</span>
@@ -27,9 +24,7 @@ const Header = React.createClass({
 const Navigation = React.createClass({
 
   componentDidMount: function () {
-
     const { moveToNextPage, togglePageCount, togglePopularUsers, triggerSearch } = this.props
-
     $('a.pagination').on('click', moveToNextPage)
     $('a.popular-users').on('click', togglePopularUsers)
     $('a.page-count').on('click', togglePageCount)
@@ -37,39 +32,32 @@ const Navigation = React.createClass({
   },
 
   render: function () {
-
     const { popularUsers, pageCount } = this.props
     const currentPage = this.props.index + 1
     const totalPages = this.props.pages.length
     const pageMessage = totalPages === 1 ? currentPage : `${currentPage} / ${totalPages}`
     const classes = popularUsers === true ? 'red heart icon' : 'heart outline icon'
-
     return (
       <nav className="navigation-pane">
         <div className="filters">
-
           <a className="ui label pagination">
             <span className="filter-text text">Page</span>
             <span className="pagination">{pageMessage}</span>
           </a>
-
           <a className="ui label page-count">
             <span className="filter-text text">Page Count</span>
             <span className="page-count">{pageCount}</span>
           </a>
-
           <a className="ui label popular-users">
             <span className="filter-text text">Popular Users</span>
             <i className={classes} />
           </a>
-
           <span className="ui label search-terms">
             <i className="search icon"></i>
             <span className="ui inverted transparent icon input search-box">
               <input className="search-field" type="text" />
             </span>
           </span>
-
         </div>
       </nav>
     )
@@ -92,10 +80,9 @@ const Content = React.createClass({
 })
 
 const VideoInfo = React.createClass({
+
   render: function () {
-
     const { user, name, link, description, modified_time, stats, metadata } = this.props
-
     const authorImage = _.get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
     const authorName = _.get(user, 'name')
     const authorLink = _.get(user, 'link')
@@ -104,7 +91,6 @@ const VideoInfo = React.createClass({
     const plays = _.get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
     const shortDescription = _.truncate(description, { length: 300, omission: '...' })
-
     return (
       <section>
         <div className="ui raised segment feed">
@@ -130,10 +116,10 @@ const VideoInfo = React.createClass({
               </div>
               <div className="meta">
                 <span className="information">
-                  <i className="red play icon"></i><span className="info">{plays}</span><span className="text">plays</span>
-                  <i className="red like icon"></i><span className="info">{likes}</span><span className="text">likes</span>
-                  <i className="red comments icon"></i><span className="info">{comments}</span><span className="text">comments</span>
-                  <a href={link} target="_blank"><i className="red linkify icon"></i><span className="info">video</span><span className="text">link</span></a>
+                  <span className="info"><i className="red play icon"></i>{plays}</span><span className="text">plays</span>
+                  <span className="info"><i className="red like icon"></i>{likes}</span><span className="text">likes</span>
+                  <span className="info"><i className="red comments icon"></i>{comments}</span><span className="text">comments</span>
+                  <a href={link} target="_blank"><i className="red linkify icon"></i><span className="infox">video</span><span className="text">link</span></a>
                 </span>
               </div>
             </div>

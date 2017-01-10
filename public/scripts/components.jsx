@@ -1,8 +1,12 @@
 const Header = React.createClass({
 
   componentDidMount: function() {
-    $('.content.icon').on('click', function() {
-      $('.navigation-pane').toggle('display')
+    const navigationPane = document.querySelector('.navigation-pane')
+    document.querySelector('.content.icon').addEventListener('click', function() {
+      if (navigationPane.style.display === 'flex')
+        navigationPane.style.display = 'none'
+      else
+        navigationPane.style.display = 'flex'
     })
   },
 
@@ -25,10 +29,10 @@ const Navigation = React.createClass({
 
   componentDidMount: function () {
     const { moveToNextPage, togglePageCount, togglePopularUsers, triggerSearch } = this.props
-    $('a.pagination').on('click', moveToNextPage)
-    $('a.popular-users').on('click', togglePopularUsers)
-    $('a.page-count').on('click', togglePageCount)
-    $('.search-field').on('input', triggerSearch)
+    document.querySelector('a.pagination').addEventListener('click', moveToNextPage)
+    document.querySelector('a.popular-users').addEventListener('click', togglePopularUsers)
+    document.querySelector('a.page-count').addEventListener('click', togglePageCount)
+    document.querySelector('.search-field').addEventListener('input', triggerSearch)
   },
 
   render: function () {

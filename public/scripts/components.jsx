@@ -229,20 +229,15 @@ const Application = React.createClass({
     this.setState(Object.assign(finalState, { filtersActive: this._filtersActive(finalState)}))
   },
 
-  getDefaultProps: function () {
+  getInitialState: function () {
     const searchTerms = []
     const pageCount = 10
     const popularUsers = false
     const videosChannel = window.com.debugme.videos.data
-    const props = { searchTerms, pageCount, popularUsers, videosChannel }
-    return props
-  },
-
-  getInitialState: function () {
-    const pageInfo = this._buildPageInfo(this.props)
-    const filterStatus = { filtersActive: false }
-    const initialState = Object.assign({}, this.props, pageInfo, filterStatus)
-    return initialState
+    const filtersActive = false
+    const state = { searchTerms, pageCount, popularUsers, videosChannel, filtersActive }
+    const pageInfo = this._buildPageInfo(state)
+    return { ...state, ...pageInfo }
   },
 
   moveToNextPage: function() {
@@ -282,7 +277,13 @@ const Application = React.createClass({
   }
 })
 
-ReactDOM.render(
-  <Application />,
-  document.querySelector('#application')
-)
+function renderApplication() {
+  ReactDOM.render(
+    <Application />,
+    document.querySelector('#application')
+  )
+}
+
+renderApplication();
+
+

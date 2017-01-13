@@ -1,7 +1,9 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
-const videoData = require('./data.js')
+const { createStore } = require('redux')
 const _ = require('lodash')
+
+const videoData = require('./data.js')
 
 const Header = require('Header')
 const Navigation = require('Navigation')

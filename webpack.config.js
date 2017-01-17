@@ -1,50 +1,63 @@
-module.exports = {
+const path = require('path')
 
-  // Define the root file from where the bundling process should begin
-  entry: './app/components/Application.jsx',
+module.exports = env => {
 
-  // Define where the bundled file should be output to
-  output: {
-    path: __dirname,
-    filename: 'public/bundle.js'
-  },
+  return {     // the validate() function pretty-prints erros with the webpack config for us :)
 
-  // Define extensions of files to be bundled
-  resolve: {
+    context: path.join(__dirname, 'app/components'),
 
-    // Define root directory of where to look...
-    root: __dirname,
+    // Define the root file from where the bundling process should begin
+    entry: './Application.jsx',
 
-    // when resolving aliases for custom React components
-    alias: {
-      Header: 'app/components/Header',
-      Navigation: 'app/components/Navigation',
-      Content: 'app/components/Content',
-      VideoInfo: 'app/components/VideoInfo',
-      Footer: 'app/components/Footer',
+    // Define where the bundled file should be output to
+    output: {
+      path: path.join(__dirname, 'public'),     // The folder the bundled file should be generated in
+      publicPath: '/public/',                   // The folder webpack-dev-server should monitor for updates
+      filename: 'bundle.js',                    // The name of the bundled file
+      pathinfo: true                            // Should requires be commented to indicate what is being required
     },
-    extensions: ['', '.js', '.jsx']
-  },
 
-  // Define how code should be transformed before it is bundled
-  module: {
-    loaders: [
-      {
-        // Use the babel-loader...
-        loader: 'babel-loader',
-        // to first convert react into javascript and then that javascript into es2015 syntax...
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        },
-        // only apply these conversions to files with the .jsx extension...
-        test: /\.jsx?$/,
+    // Provide support for source-map (inline for DEV; separate for PROD)
+    devtool: env.prod && 'source-map' || 'eval',
 
-        // and exclude the following directories
-        exclude: /(node_modules)/
+    resolve: {
+      // Look in these directories when trying to find modules...
+      modules: [
+        'node_modules',
+        __dirname
+      ],
+      // Files with these extensions should be considered as modules
+      extensions: ['.js', '.jsx'],
+
+      // Define aliases which can be for one module to refer to another module
+      alias: {
+        'Header': 'app/components/Header',
+        'Navigation': 'app/components/Navigation',
+        'Content': 'app/components/Content',
+        'Footer': 'app/components/Footer',
+        'VideoInfo': 'app/components/VideoInfo'
       }
-    ]
-  },
+    },
 
-  // Enable source maps for debugging purposes
-  devtool: 'inline-source-map'
+    // Define how code should be transformed before it is bundled
+    module: {
+      loaders: [
+        {
+          // Use the babel-loader...
+          loader: 'babel-loader',
+          // to convert React code into latest EcmaScript code...
+          query: {
+            presets: ['react', 'latest', 'stage-0']
+          },
+          // only apply these conversions to files with the .js or .jsx extension...
+          test: /\.jsx?$/,
+
+          // and exclude the following directories
+          exclude: /(node_modules)/
+        }
+      ]
+    }
+
+  }
+
 }

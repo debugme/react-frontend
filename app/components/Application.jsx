@@ -70,19 +70,19 @@ const Application = React.createClass({
   },
 
   getInitialState: function () {
+    const rawSearch = ''
     const searchTerms = []
     const pageCount = 10
     const popularUsers = false
     const videosChannel = videoData
     const filtersActive = false
     const showFilters = false
-    const state = { searchTerms, pageCount, popularUsers, videosChannel, filtersActive, showFilters }
+    const state = { rawSearch, searchTerms, pageCount, popularUsers, videosChannel, filtersActive, showFilters }
     const pageInfo = this._buildPageInfo(state)
     return { ...state, ...pageInfo }
   },
 
   toggleMenu: function() {
-
     if (this.state.showFilters)
       this._updateState(this.getInitialState())
     else
@@ -111,7 +111,7 @@ const Application = React.createClass({
       const searchValue = value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
       const searchTerms = uniq(tokenValues).filter(value => value.length)
-      this._updateState({ index: 0, searchTerms })
+      this._updateState({ index: 0, searchTerms, rawSearch: value })
   },
 
   render: function () {

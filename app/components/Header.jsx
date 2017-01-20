@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 
 const Header = React.createClass({
 
@@ -27,4 +27,4 @@ const Header = React.createClass({
   }
 })
 
-module.exports = Header
+export default Header

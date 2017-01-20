@@ -1,14 +1,14 @@
-const React = require('react')
-const ReactDOM = require('react-dom')
-const { createStore } = require('redux')
-const _ = require('lodash')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { chunk, get, uniq } from 'lodash'
 
-const videoData = require('./data.js')
+import videoData from './data'
 
-const Header = require('Header')
-const Navigation = require('Navigation')
-const Content = require('Content')
-const Footer = require('Footer')
+import Header from 'Header'
+import Navigation from 'Navigation'
+import Content from 'Content'
+import Footer from 'Footer'
 
 const Application = React.createClass({
 

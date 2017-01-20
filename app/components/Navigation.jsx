@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 
 const Navigation = React.createClass({
 
@@ -35,4 +35,4 @@ const Navigation = React.createClass({
   }
 })
 
-module.exports = Navigation
+export default Navigation

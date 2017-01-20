@@ -1,7 +1,6 @@
 import path from 'path'
-// const path = require('path')
 
-module.exports = env => {
+const getConfig = (env) => {
 
   return {     // the validate() function pretty-prints erros with the webpack config for us :)
 
@@ -62,3 +61,5 @@ module.exports = env => {
   }
 
 }
+
+export default getConfig

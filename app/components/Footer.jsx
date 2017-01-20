@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 
 const Footer = React.createClass({
   render: function () {
@@ -41,4 +41,4 @@ const Footer = React.createClass({
   }
 })
 
-module.exports = Footer
+export default Footer

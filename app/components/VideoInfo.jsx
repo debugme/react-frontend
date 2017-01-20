@@ -1,19 +1,19 @@
-const React = require('react')
-const moment = require('moment')
-const _ = require('lodash')
+import React from 'react'
+import moment from 'moment'
+import { get, truncate } from 'lodash'
 
 const VideoInfo = React.createClass({
 
   render: function () {
     const { user, name, link, description, modified_time, stats, metadata } = this.props
-    const authorImage = _.get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
-    const authorName = _.get(user, 'name')
-    const authorLink = _.get(user, 'link')
-    const likes = _.get(metadata, 'connections.likes.total', '0')
-    const comments = _.get(metadata, 'connections.comments.total', '0')
-    const plays = _.get(stats, 'plays', '0')
+    const authorImage = get(user, 'pictures.sizes[0].link', 'http://semantic-ui.com/images/avatar/small/elliot.jpg')
+    const authorName = get(user, 'name')
+    const authorLink = get(user, 'link')
+    const likes = get(metadata, 'connections.likes.total', '0')
+    const comments = get(metadata, 'connections.comments.total', '0')
+    const plays = get(stats, 'plays', '0')
     const lastModified = moment(modified_time).fromNow()
-    const shortDescription = _.truncate(description, { length: 300, omission: '...' })
+    const shortDescription = truncate(description, { length: 300, omission: '...' })
     return (
       <section>
         <div className="ui raised segment feed">
@@ -53,4 +53,4 @@ const VideoInfo = React.createClass({
   }
 })
 
-module.exports = VideoInfo
+export default VideoInfo

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     "total": 151,
     "page": 1,
     "per_page": 50,

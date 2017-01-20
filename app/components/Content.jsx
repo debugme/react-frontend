@@ -1,5 +1,5 @@
-const React = require('react')
-const VideoInfo = require('VideoInfo')
+import React from 'react'
+import VideoInfo from 'VideoInfo'
 
 const Content = React.createClass({
 
@@ -12,4 +12,4 @@ const Content = React.createClass({
   }
 })
 
-module.exports = Content
+export default Content

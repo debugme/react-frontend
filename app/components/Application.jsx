@@ -75,6 +75,13 @@ const Application = React.createClass({
     return { ...state, ...pageInfo }
   },
 
+  toggleMenu: function () {
+    if (this.style.display === 'flex')
+      this.style.display = 'none'
+    else
+      this.style.display = 'flex'
+  },
+
   moveToNextPage: function() {
     const value = this.state.index + 1
     const index = value % this.state.pages.length
@@ -104,7 +111,7 @@ const Application = React.createClass({
     return (
       <div className="container">
         <Header {...this.state} />
-        <Navigation {...this.state} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
+        <Navigation {...this.state} toggleMenu={toggleMenu} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
         <Content videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>

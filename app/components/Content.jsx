@@ -3,15 +3,11 @@ const VideoInfo = require('VideoInfo')
 
 const Content = React.createClass({
 
-  buildVideo: function (video) {
-    return <VideoInfo key={video.uri} {...video} />
-  },
-
   render: function () {
-    const videos = this.props.videos.map(this.buildVideo)
+    const videoList = this.props.videos.map(video => <VideoInfo key={video.uri} {...video} />)
     return (
       <main className="content-pane">
-        {videos}
+        {videoList}
       </main>)
   }
 })

@@ -34,7 +34,7 @@ const Application = React.createClass({
     if (!popularUsers)
       return true
     const popularUserLikes = 10
-    const userLikes = _.get(video, 'user.metadata.connections.likes.total', 0)
+    const userLikes = get(video, 'user.metadata.connections.likes.total', 0)
     const isPopularVideo = userLikes >= popularUserLikes
     return isPopularVideo
   },
@@ -57,7 +57,7 @@ const Application = React.createClass({
     const filteredVideos = videosChannel.data
       .filter(videoHasSearchTerm)
       .filter(videoByPopularUser)
-    const pages = filteredVideos.length > 0 ? _.chunk(filteredVideos, pageCount) : [[]]
+    const pages = filteredVideos.length > 0 ? chunk(filteredVideos, pageCount) : [[]]
     const pageInfo = { pages, index }
     return pageInfo
   },
@@ -75,9 +75,18 @@ const Application = React.createClass({
     const popularUsers = false
     const videosChannel = videoData
     const filtersActive = false
-    const state = { searchTerms, pageCount, popularUsers, videosChannel, filtersActive }
+    const showFilters = false
+    const state = { searchTerms, pageCount, popularUsers, videosChannel, filtersActive, showFilters }
     const pageInfo = this._buildPageInfo(state)
     return { ...state, ...pageInfo }
+  },
+
+  toggleMenu: function() {
+
+    if (this.state.showFilters)
+      this._updateState(this.getInitialState())
+    else
+      this._updateState({ index: 0, showFilters: !this.state.showFilters })
   },
 
   moveToNextPage: function() {
@@ -98,17 +107,17 @@ const Application = React.createClass({
     this._updateState({ index: 0, popularUsers: !this.state.popularUsers })
   },
 
-  triggerSearch: function(event) {
-      const searchValue = event.target.value.toLowerCase().trim()
+  triggerSearch: function(value) {
+      const searchValue = value.toLowerCase().trim()
       const tokenValues = searchValue.split(/\s*\s\s*/)
-      const searchTerms = _.uniq(tokenValues).filter(value => value.length)
+      const searchTerms = uniq(tokenValues).filter(value => value.length)
       this._updateState({ index: 0, searchTerms })
   },
 
   render: function () {
     return (
       <div className="container">
-        <Header {...this.state} />
+        <Header {...this.state} toggleMenu={this.toggleMenu}/>
         <Navigation {...this.state} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
         <Content videos={this.state.pages[this.state.index]} />
         <Footer />

@@ -1,6 +1,17 @@
 const React = require('react')
 
 const Header = React.createClass({
+
+  componentDidMount: function () {
+    const navigationPane = document.querySelector('.navigation-pane')
+    document.querySelector('.content.icon').addEventListener('click', function () {
+      if (navigationPane.style.display === 'flex')
+        navigationPane.style.display = 'none'
+      else
+        navigationPane.style.display = 'flex'
+    })
+  },
+
   render: function () {
     const classes = this.props.filtersActive ? 'filter-active content icon' : 'filter-inactive content icon'
     return (

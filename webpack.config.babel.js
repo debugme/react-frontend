@@ -1,4 +1,5 @@
 import path from 'path'
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const getConfig = (env) => {
 
@@ -35,28 +36,33 @@ const getConfig = (env) => {
         'Navigation': 'app/components/Navigation',
         'Content': 'app/components/Content',
         'Footer': 'app/components/Footer',
-        'VideoInfo': 'app/components/VideoInfo'
+        'VideoInfo': 'app/components/VideoInfo',
+
+        'debug': 'app/../styles/styles.scss',
+        'layout': 'app/../styles/layout.scss',
+        'responsive': 'app/../styles/responsive.scss',
+        'styles': 'app/../styles/styles.scss'
       }
     },
 
     // Define how code should be transformed before it is bundled
     module: {
-      loaders: [
+      rules: [
         {
-          // Use the babel-loader...
           loader: 'babel-loader',
-          // to convert React code into latest EcmaScript code...
-          query: {
-            presets: ['react', 'es2015', 'es2016', 'stage-0']
-          },
-          // only apply these conversions to files with the .js or .jsx extension...
           test: /\.jsx?$/,
-
-          // and exclude the following directories
-          exclude: /(node_modules)/
+          exclude: /(node_modules|public)/
+        },
+        {
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
+          test: /\.s?css/,
         }
       ]
-    }
+    },
+
+    plugins: [
+      new ExtractTextPlugin('bundle.css')
+    ]
 
   }
 

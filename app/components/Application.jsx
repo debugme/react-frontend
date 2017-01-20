@@ -10,6 +10,11 @@ import Navigation from 'Navigation'
 import Content from 'Content'
 import Footer from 'Footer'
 
+import 'styles'
+import 'layout'
+import 'responsive'
+import 'debug'
+
 const Application = React.createClass({
 
   _hasSearchTerm: function (searchTerms, video) {

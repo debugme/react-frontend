@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const getConfig = (env) => {
 
-  return {     // the validate() function pretty-prints erros with the webpack config for us :)
+  return {
 
     context: path.join(__dirname, 'app/components'),
 
@@ -28,20 +28,23 @@ const getConfig = (env) => {
         __dirname
       ],
       // Files with these extensions should be considered as modules
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.css', '.scss'],
 
       // Define aliases which can be for one module to refer to another module
       alias: {
+
+        // Define aliases for your React components
         'Header': 'app/components/Header',
         'Navigation': 'app/components/Navigation',
         'Content': 'app/components/Content',
         'Footer': 'app/components/Footer',
         'VideoInfo': 'app/components/VideoInfo',
 
-        'debug': 'app/../styles/styles.scss',
-        'layout': 'app/../styles/layout.scss',
-        'responsive': 'app/../styles/responsive.scss',
-        'styles': 'app/../styles/styles.scss'
+        // Define aliases for your SASS files
+        'debug': 'styles/debug.scss',
+        'layout': 'styles/layout.scss',
+        'responsive': 'styles/responsive.scss',
+        'general': 'styles/general.scss'
       }
     },
 
@@ -49,19 +52,19 @@ const getConfig = (env) => {
     module: {
       rules: [
         {
-          loader: 'babel-loader',
-          test: /\.jsx?$/,
-          exclude: /(node_modules|public)/
+          loader: 'babel-loader',                                               // the babel-loader should be used to transform files...
+          test: /\.jsx?$/,                                                      // that have the .js or .jsx extension...
+          exclude: /(node_modules|public)/                                      // and are not in the node_modules or public folders
         },
         {
-          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
-          test: /\.s?css/,
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),          // this extract text plugin should be used to concatenate files...
+          test: /\.s?css/,                                                      // that have the .css or .scss extension
         }
       ]
     },
 
     plugins: [
-      new ExtractTextPlugin('bundle.css')
+      new ExtractTextPlugin('bundle.css')                                       // all files concatenated should be dumped into a single file whose name is 'bundle.css'
     ]
 
   }

@@ -308,3 +308,35 @@ body .container, main {
     display: none; }
   .footer-pane .view .large {
     display: none; } }
+/* Large Display */
+@media screen and (min-width: 901px) {
+  .header-pane {
+    border: solid red 1px; }
+  .navigation-pane {
+    border: solid red 1px; }
+  .content-pane {
+    border: solid red 1px; }
+  .footer-pane {
+    border: solid red 1px; } }
+
+/* Medium Display */
+@media screen and (max-width: 900px) {
+  .header-pane {
+    border: solid orange 1px; }
+  .navigation-pane {
+    border: solid orange 1px; }
+  .content-pane {
+    border: solid orange 1px; }
+  .footer-pane {
+    border: solid orange 1px; } }
+
+/* Small Display */
+@media screen and (max-width: 700px) {
+  .header-pane {
+    border: solid greenyellow 1px; }
+  .navigation-pane {
+    border: solid greenyellow 1px; }
+  .content-pane {
+    border: solid greenyellow 1px; }
+  .footer-pane {
+    border: solid greenyellow 1px; } }

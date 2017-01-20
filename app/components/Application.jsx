@@ -10,7 +10,7 @@ import Navigation from 'Navigation'
 import Content from 'Content'
 import Footer from 'Footer'
 
-import 'styles'
+import 'general'
 import 'layout'
 import 'responsive'
 import 'debug'

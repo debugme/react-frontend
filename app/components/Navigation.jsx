@@ -3,7 +3,7 @@ const React = require('react')
 const Navigation = React.createClass({
 
   render: function () {
-    const { toggleMenu, moveToNextPage, togglePopularUsers, togglePageCount, popularUsers, pageCount } = this.props
+    const { toggleMenu, moveToNextPage, togglePopularUsers, togglePageCount, triggerSearch, popularUsers, pageCount } = this.props
     const currentPage = this.props.index + 1
     const totalPages = this.props.pages.length
     const pageMessage = totalPages === 1 ? currentPage : `${currentPage} / ${totalPages}`

@@ -111,7 +111,7 @@ const Application = React.createClass({
     return (
       <div className="container">
         <Header {...this.state} />
-        <Navigation {...this.state} toggleMenu={toggleMenu} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
+        <Navigation {...this.state} toggleMenu={this.toggleMenu} togglePageCount={this.togglePageCount} togglePopularUsers={this.togglePopularUsers} moveToNextPage={this.moveToNextPage} triggerSearch={this.triggerSearch}/>
         <Content videos={this.state.pages[this.state.index]} />
         <Footer />
       </div>

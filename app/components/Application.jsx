@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
 import { chunk, get, uniq } from 'lodash'
 
 import videoData from './data'

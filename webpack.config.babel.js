@@ -1,21 +1,26 @@
 import path from 'path'
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+
+const BUNDLE_ROOT = 'app/components/Application.jsx'
+const VENDOR_LIBS = ['lodash', 'moment', 'react', 'react-dom']
 
 const getConfig = (env) => {
 
   return {
 
-    context: path.join(__dirname, 'app/components'),
-
-    // Define the root file from where the bundling process should begin
-    entry: './Application.jsx',
+    // Define the root files from where discrete bundles should be created
+    entry: {
+      bundle: BUNDLE_ROOT,      // store app code and any libraries not defined in VENDOR_LIBS in bundle.js
+      vendor: VENDOR_LIBS       // store these libraries in vendor.js
+    },
 
     // Define where the bundled file should be output to
     output: {
-      path: path.join(__dirname, 'public'),     // The folder the bundled file should be generated in
-      publicPath: '/public/',                   // The folder webpack-dev-server should monitor for updates
-      filename: 'bundle.js',                    // The name of the bundled file
-      pathinfo: true                            // Should requires be commented to indicate what is being required
+      path: path.join(__dirname, 'public'),     // The folder the bundled files should be generated in
+      filename: '[name].js',                    // The name of the bundled files (matches the keys in the entry object above)
+      pathinfo: true                            // Should requires be commented in bundle files to make more clear indicate what is being required by the require call
     },
 
     // Provide support for source-map (inline for DEV; separate for PROD)
@@ -64,7 +69,10 @@ const getConfig = (env) => {
     },
 
     plugins: [
-      new ExtractTextPlugin('bundle.css')                                       // all files concatenated should be dumped into a single file whose name is 'bundle.css'
+      new ExtractTextPlugin('bundle.css'),                                      // all files concatenated should be dumped into a single file whose name is 'bundle.css'
+      new HtmlWebpackPlugin({                                                   // add "bundle.js", "vendor.js" and "bundle.css" in script/link tags into copy of index.html in public folder
+        template: 'app/index.html'
+      })
     ]
 
   }
@@ -72,3 +80,17 @@ const getConfig = (env) => {
 }
 
 export default getConfig
+
+// BEFORE
+//  bundle.js   2.5 MB       0  [emitted]  [big]  bundle
+// bundle.css  7.82 kB       0  [emitted]         bundle
+
+// AFTER
+//  bundle.js   2.5 MB       0  [emitted]  [big]  bundle
+//  vendor.js  1.91 MB       1  [emitted]  [big]  vendor
+// bundle.css  7.82 kB       0  [emitted]         bundle
+
+// AFTER-AFTER
+//  bundle.js   589 kB       0  [emitted]  [big]  bundle
+//  vendor.js  1.91 MB       1  [emitted]  [big]  vendor
+// bundle.css  7.82 kB       0  [emitted]         bundle

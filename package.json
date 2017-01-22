@@ -4,10 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+
     "build:prod": "webpack -p --env.prod",
     "build:dev": "webpack --env.dev",
     "build:prod:watch": "webpack -p --watch --env.prod",
-    "build:dev:watch": "webpack --watch --env.dev"
+    "build:dev:watch": "webpack --watch --env.dev",
+
+    "prebuild:dev": "rimraf public",
+    "prebuild:prod": "rimraf public",
+    "prebuild:dev:watch": "rimraf public",
+    "prebuild:prod:watch": "rimraf public"
+
   },
   "repository": {
     "type": "git",
@@ -31,6 +38,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "html-webpack-plugin": "^2.26.0",
     "node-sass": "^4.3.0",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.1.1",
     "webpack": "^2.2.0"
   },

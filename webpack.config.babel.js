@@ -19,7 +19,7 @@ const getConfig = (env) => {
     // Define where the bundled file should be output to
     output: {
       path: path.join(__dirname, 'public'),     // The folder the bundled files should be generated in
-      filename: '[name].js',                    // The name of the bundled files (matches the keys in the entry object above)
+      filename: '[name].[chunkhash].js',         // The name of the bundled files (matches the keys in the entry object above) with chunk hash for cache busting
       pathinfo: true                            // Should requires be commented in bundle files to make more clear indicate what is being required by the require call
     },
 
@@ -56,21 +56,42 @@ const getConfig = (env) => {
     // Define how code should be transformed before it is bundled
     module: {
       rules: [
+
+        // the babel-loader should be used to transform files...
+        // that have the .js or .jsx extension...
+        // and are not in the node_modules or public folders
         {
-          loader: 'babel-loader',                                               // the babel-loader should be used to transform files...
-          test: /\.jsx?$/,                                                      // that have the .js or .jsx extension...
-          exclude: /(node_modules|public)/                                      // and are not in the node_modules or public folders
+          loader: 'babel-loader',
+          test: /\.jsx?$/,
+          exclude: /(node_modules|public)/
         },
+
+        // this extract text plugin should be used to concatenate files...
+        // that have the .css or .scss extension
         {
-          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),          // this extract text plugin should be used to concatenate files...
-          test: /\.s?css/,                                                      // that have the .css or .scss extension
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
+          test: /\.s?css/
         }
       ]
     },
 
     plugins: [
-      new ExtractTextPlugin('bundle.css'),                                      // all files concatenated should be dumped into a single file whose name is 'bundle.css'
-      new HtmlWebpackPlugin({                                                   // add "bundle.js", "vendor.js" and "bundle.css" in script/link tags into copy of index.html in public folder
+
+      // vendor contains the source code for the vendor libs
+      // manifest contains information indicating whether bundle/vendor/both files changed
+      // If we do not provide the 'manifest' string, the info about what has changed is added
+      // to vendor, causing it to cache-bust and be downloaded by the browser (Not the behaviour
+      // you want when you have only changed bundle.js!!!)
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest']
+      }),
+
+      // all files concatenated should be dumped into a single file whose name is 'bundle.[hash].css'
+      // by using the hash, we facilitate cache-busting in the browser
+      new ExtractTextPlugin('bundle.[contenthash].css'),
+
+      // add "bundle.js", "vendor.js" and "bundle.css" in script/link tags into copy of index.html in public folder
+      new HtmlWebpackPlugin({
         template: 'app/index.html'
       })
     ]
@@ -82,15 +103,15 @@ const getConfig = (env) => {
 export default getConfig
 
 // BEFORE
-//  bundle.js   2.5 MB       0  [emitted]  [big]  bundle
-// bundle.css  7.82 kB       0  [emitted]         bundle
+// bundle.js   2.5 MB       0  [emitted]  [big]  bundle
+// bundle.css  7.82 kB      0  [emitted]         bundle
 
 // AFTER
-//  bundle.js   2.5 MB       0  [emitted]  [big]  bundle
-//  vendor.js  1.91 MB       1  [emitted]  [big]  vendor
-// bundle.css  7.82 kB       0  [emitted]         bundle
+// bundle.js   2.5 MB       0  [emitted]  [big]  bundle
+// vendor.js  1.91 MB       1  [emitted]  [big]  vendor
+// bundle.css  7.82 kB      0  [emitted]         bundle
 
 // AFTER-AFTER
-//  bundle.js   589 kB       0  [emitted]  [big]  bundle
-//  vendor.js  1.91 MB       1  [emitted]  [big]  vendor
-// bundle.css  7.82 kB       0  [emitted]         bundle
+// bundle.js   589 kB       0  [emitted]  [big]  bundle
+// vendor.js  1.91 MB       1  [emitted]  [big]  vendor
+// bundle.css  7.82 kB      0  [emitted]         bundle

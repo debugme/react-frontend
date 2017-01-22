@@ -13,7 +13,8 @@ const Header = React.createClass({
         <span>
           <a href="#" className="menu" onClick={toggleMenu}><i className={classes}></i></a>
           <img className="ui avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
-          <span className="name">Asad Razvi</span>
+          <span className="name">Asad</span>
+          <span className="name"> Razvi</span>
         </span>
       </header>
     )

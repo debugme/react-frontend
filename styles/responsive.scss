@@ -8,6 +8,14 @@
     display: inline-block;
     margin-right: 0.5em;
   }
+  .header-pane .name:first-of-type {
+    margin-left: 0.5em;
+    display: inline-flex;
+  }
+  .header-pane .name:last-of-type {
+    margin-left: 0.5em;
+    display: inline-flex;
+  }
   .navigation-pane {
     order: 1;
   }
@@ -66,8 +74,11 @@
     display: inline-block;
     margin-right: 0.5em;
   }
-  .header-pane .name {
+  .header-pane .name:first-of-type {
     margin-left: 0.5em;
+  }
+  .header-pane .name:last-of-type {
+    display: none;
   }
   .navigation-pane {
     order: 1;

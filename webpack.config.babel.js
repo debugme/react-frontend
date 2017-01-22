@@ -67,7 +67,7 @@ const getConfig = (env) => {
         },
 
         // this extract text plugin should be used to concatenate files...
-        // that have the .css or .scss extension
+        // that have the .css or .scss extension.
         {
           loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
           test: /\.s?css/

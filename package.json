@@ -1,8 +1,8 @@
 {
   "name": "schibsted",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "A simple react front-end built with webpack",
+  "main": "index.js",
   "scripts": {
 
     "build:prod": "webpack -p --env.prod",

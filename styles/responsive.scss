@@ -1,66 +1,72 @@
 /* Large Display */
 @media screen and (min-width: 901px) {
+
   .header-pane {
     padding: 0 3em;
     order: 0;
+    .menu {
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+    .name:first-of-type {
+      margin-left: 0.5em;
+      display: inline-flex;
+    }
+    .name:last-of-type {
+      margin-left: 0.5em;
+      display: inline-flex;
+    }
   }
-  .header-pane .menu {
-    display: inline-block;
-    margin-right: 0.5em;
-  }
-  .header-pane .name:first-of-type {
-    margin-left: 0.5em;
-    display: inline-flex;
-  }
-  .header-pane .name:last-of-type {
-    margin-left: 0.5em;
-    display: inline-flex;
-  }
+
   .navigation-pane {
     order: 1;
+    .filters {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
   }
-  .navigation-pane .filters {
-    padding-left: 3em;
-    padding-right: 3em;
-  }
+
   .content-pane {
     order: 2;
     padding: 1em 3em 0em 3em;
+    .meta .information {
+      display: flex;
+    }
+    .info:not(:nth-last-child(2)) {
+      padding: 0;
+      border: none;
+    }
+    .text {
+      display: inline-flex;
+    }
+    .short-description {
+      display: none;
+    }
+    .description {
+      display: block;
+    }
   }
-  .content-pane .meta .information {
-    display: flex;
-  }
-  .content-pane .info:not(:nth-last-child(2)) {
-    padding: 0;
-    border: none;
-  }
-  .content-pane .text {
-    display: inline-flex;
-  }
-  .content-pane .short-description {
-    display: none;
-  }
-  .content-pane .description {
-    display: block;
-  }
+
   .footer-pane {
     padding: 0 3em;
     order: 3;
-  }
-  .footer-pane .social-links {
-    display: inline-block;
-  }
-  .footer-pane .text {
-    display: inline-block;
-  }
-  .footer-pane .view .small {
-    display: none;
-  }
-  .footer-pane .view .medium {
-    display: none;
-  }
-  .footer-pane .view .large {
-    display: inline-block;
+    .social-links {
+      display: inline-block;
+    }
+    .text {
+      display: inline-block;
+    }
+    .view {
+      .small {
+        display: none;
+      }
+      .medium {
+        display: none;
+      }
+      .large {
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -69,129 +75,139 @@
   .header-pane {
     padding: 0 2em;
     order: 0;
+    .menu {
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+    .name:first-of-type {
+      margin-left: 0.5em;
+    }
+    .name:last-of-type {
+      display: none;
+    }
   }
-  .header-pane .menu {
-    display: inline-block;
-    margin-right: 0.5em;
-  }
-  .header-pane .name:first-of-type {
-    margin-left: 0.5em;
-  }
-  .header-pane .name:last-of-type {
-    display: none;
-  }
+
   .navigation-pane {
     order: 1;
+    .filters {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
   }
-  .navigation-pane .filters {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
+
   .content-pane {
     order: 2;
     padding: 1em 2em 0em 2em;
+    .meta .information {
+      display: flex;
+    }
+    .info:not(:nth-last-child(2)) {
+      padding-right: 1em;
+      border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
+    }
+    .text {
+      display: none;
+    }
+    .short-description {
+      display: block;
+    }
+    .description {
+      display: none;
+    }
   }
-  .content-pane .meta .information {
-    display: flex;
-  }
-  .content-pane .info:not(:nth-last-child(2)) {
-    padding-right: 1em;
-    border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
-  }
-  .content-pane .text {
-    display: none;
-  }
-  .content-pane .short-description {
-    display: block;
-  }
-  .content-pane .description {
-    display: none;
-  }
+
   .footer-pane {
     padding: 0 2em;
     order: 3;
-  }
-  .footer-pane .social-links {
-    display: inline-block;
-  }
-  .footer-pane .text {
-    display: inline-block;
-  }
-  .footer-pane .view .small {
-    display: none;
-  }
-  .footer-pane .view .medium {
-    display: inline-block;
-  }
-  .footer-pane .view .large {
-    display: none;
+    .social-links {
+      display: inline-block;
+    }
+    .text {
+      display: inline-block;
+    }
+    .view {
+      .small {
+        display: none;
+      }
+      .medium {
+        display: inline-block;
+      }
+      .large {
+        display: none;
+      }
+    }
+
   }
 }
 
 /* Small Display */
 @media screen and (max-width: 700px) {
+
   .header-pane {
     padding: 0 1em;
     order: 0;
+
+    .menu {
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+    .name {
+      display: none;
+    }
   }
-  .header-pane .menu {
-    display: inline-block;
-    margin-right: 0.5em;
-  }
-  .header-pane .name {
-    display: none;
-  }
+
   .navigation-pane {
     order: 1;
+    .filters {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    .text {
+      display: none;
+    }
   }
-  .navigation-pane .filters {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-  .content-pane .info:not(:nth-last-child(2)) {
-    padding: 0;
-    border: none;
-  }
-  .navigation-pane .text {
-    display: none;
-  }
+
   .content-pane {
     order: 2;
     padding: 1em 1em 0em 1em;
+    .info:not(:nth-last-child(2)) {
+      padding: 0;
+      border: none;
+    }
+    .meta .information .info {
+      display: none;
+    }
+    .text {
+      display: none;
+    }
+    .short-description {
+      display: block;
+    }
+    .description {
+      display: none;
+    }
   }
 
-  .content-pane .meta .information .info {
-    display: none;
-  }
-  .content-pane .text {
-    display: inline-flex;
-  }
-  .content-pane .text {
-    display: none;
-  }
-  .content-pane .short-description {
-    display: block;
-  }
-  .content-pane .description {
-    display: none;
-  }
   .footer-pane {
     order: 3;
     padding: 0 1em;
+    .social-links {
+      display: inline-block;
+    }
+    .text {
+      display: none;
+    }
+    .view {
+      .small {
+        display: inline-block;
+      }
+      .medium {
+        display: none;
+      }
+      .large {
+        display: none;
+      }
+    }
   }
-  .footer-pane .social-links {
-    display: inline-block;
-  }
-  .footer-pane .text {
-    display: none;
-  }
-  .footer-pane .view .small {
-    display: inline-block;
-  }
-  .footer-pane .view .medium {
-    display: none;
-  }
-  .footer-pane .view .large {
-    display: none;
-  }
+
 }

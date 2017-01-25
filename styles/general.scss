@@ -1,102 +1,118 @@
-body .container {
-  background-color: #4183C4;
+$blue-color: #4183C4;
+$red-color: #DB2828;
+$grey-color: #767676;
+$black-color: #1B1C1D;
+
+.container {
+  background-color: $blue-color;
 }
 
 .header-pane {
+
   background-color: #1B1C1D;
-  color: #4183C4;
+  color: $blue-color;
+
+  .logo {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .filter-active {
+    color: $red-color;
+  }
+
+  .filter-inactive {
+    color: inherit;
+  }
+
+  a:link, a:visited, a:hover, a:active {
+    color: $blue-color;
+    opacity: 1;
+  }
 }
 
-.header-pane .logo {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+.navigation-pane {
+
+  .filters .search-terms .ui.transparent.inverted.input input {
+    color: $red-color;
+  }
+
+  .filter-text {
+    color: $blue-color;
+  }
+
+  .pagination {
+    color: $blue-color;
+  }
+
+  .page-count {
+    color: $blue-color;
+  }
+
+  .ui.label {
+    background-color: $black-color;
+    color: $blue-color;
+    border: solid $black-color 0.08em;
+  }
+
+  .ui.label>.icon {
+    color: $blue-color;
+  }
+
+  a.ui.label:hover {
+    background-color: $black-color;
+    border: solid $black-color 0.08em;
+  }
+
+  a.ui.label:active {
+    border: solid $red-color 0.08em;
+  }
 }
 
-.header-pane .filter-active {
-  color: #DB2828;
-}
+.content-pane {
 
-.header-pane .filter-inactive {
-  color: inherit;
-}
+  /* Hide scrollbars as they look ugly! */
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
-.header-pane  a:link, a:visited, a:hover, a:active {
-  color: #4183C4;
-  opacity: 1;
-}
+  .description, .content-pane .short-description {
+    font-size: 0.9rem;
+    font-style: italic;
+  }
 
-.navigation-pane .filters .search-terms .ui.transparent.inverted.input input {
-  color: #DB2828;
-}
+  .meta .information {
+    border: solid rgba(118, 118, 118, 0.2) 0.08em;
+    border-radius: 0.3em;
+    background-color: rgba(118, 118, 118, 0.05);
+  }
 
-.navigation-pane .filter-text {
-  color: #4183C4;
-}
+  .text:not(:last-child) {
+    border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
+  }
 
-.navigation-pane .pagination {
-  color: #4183C4;
-}
+  .ui.feed>.event>.content .meta a {
+    color: rgba(0,0,0,.6);
+    opacity: inherit;
+  }
+  .ui.feed>.event>.content .meta>.icon {
+    cursor: inherit;
+  }
 
-.navigation-pane .page-count {
-  color: #4183C4;
-}
-
-.navigation-pane .ui.label {
-  background-color: #1B1C1D;
-  color: #4183C4;
-  border: solid #1B1C1D 0.08em;
-}
-
-.navigation-pane .ui.label>.icon {
-  color: #4183C4;
-}
-
-.navigation-pane a.ui.label:hover {
-  background-color: #1B1C1D;
-  border: solid #1B1C1D 0.08em;
-}
-
-.navigation-pane a.ui.label:active {
-  border: solid #DB2828 0.08em;
-}
-
-/* Hide scrollbars as they look ugly! */
-.content-pane::-webkit-scrollbar {
-  display: none;
-}
-
-.content-pane .description, .content-pane .short-description {
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-.content-pane .meta .information {
-  border: solid rgba(118, 118, 118, 0.2) 0.08em;
-  border-radius: 0.3em;
-  background-color: rgba(118, 118, 118, 0.05);
-}
-
-.content-pane .text:not(:last-child) {
-  border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
-}
-
-.content-pane .ui.feed>.event>.content .meta a {
-  color: rgba(0,0,0,.6);
-  opacity: inherit;
-}
-.content-pane .ui.feed>.event>.content .meta>.icon {
-  cursor: inherit;
 }
 
 .footer-pane {
-  background-color: #1B1C1D;
-  color: #767676;
+
+  background-color: $black-color;
+  color: $grey-color;
+
+  a:link, a:visited, a:hover, a:active {
+    color: $grey-color;
+  }
+
+  i {
+    color: $blue-color;
+  }
 }
 
-.footer-pane a:link, a:visited, a:hover, a:active {
-  color: #767676;
-}
 
-.footer-pane i {
-  color: #4183C4;
-}

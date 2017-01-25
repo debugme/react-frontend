@@ -101,17 +101,3 @@ const getConfig = (env) => {
 }
 
 export default getConfig
-
-// BEFORE
-// bundle.js   2.5 MB       0  [emitted]  [big]  bundle
-// bundle.css  7.82 kB      0  [emitted]         bundle
-
-// AFTER
-// bundle.js   2.5 MB       0  [emitted]  [big]  bundle
-// vendor.js  1.91 MB       1  [emitted]  [big]  vendor
-// bundle.css  7.82 kB      0  [emitted]         bundle
-
-// AFTER-AFTER
-// bundle.js   589 kB       0  [emitted]  [big]  bundle
-// vendor.js  1.91 MB       1  [emitted]  [big]  vendor
-// bundle.css  7.82 kB      0  [emitted]         bundle

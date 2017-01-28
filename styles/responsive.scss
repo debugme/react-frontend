@@ -10,7 +10,7 @@
   }
 
   .content-pane {
-    padding: 1em 3em 0em 3em;
+    padding: 0em 3em 0em 3em;
     .info:not(:nth-last-child(2)) {
       padding: 0;
       border: none;
@@ -52,7 +52,7 @@
   }
 
   .content-pane {
-    padding: 1em 2em 0em 2em;
+    padding: 0em 2em 0em 2em;
     .info:not(:nth-last-child(2)) {
       padding-right: 1em;
       border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
@@ -95,13 +95,13 @@
 
   .navigation-pane {
     padding: 1em 1em 0em 1em;
-    .text {
+    &-filter-text:nth-child(1) {
       display: none;
     }
   }
 
   .content-pane {
-    padding: 1em 1em 0em 1em;
+    padding: 0em 1em 0em 1em;
     .info:not(:nth-last-child(2)) {
       padding: 0;
       border: none;

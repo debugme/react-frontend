@@ -42,8 +42,8 @@ header, nav, footer, main, section, .container  {
     margin-right: 0;
     display: flex;
   }
-  &-filter-text:nth-child(2) {
-    margin-left: 0.5em;
+  &-filter-text:nth-child(1) {
+    margin-right: 0.5em;
   }
   &-filter-search-box {
     flex: 1;
@@ -51,6 +51,7 @@ header, nav, footer, main, section, .container  {
 }
 
 .content-pane {
+  margin-top: 1em;
   width: 100vw;
   flex: auto;
   overflow: auto;

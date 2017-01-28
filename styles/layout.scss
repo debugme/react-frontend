@@ -1,9 +1,5 @@
-header, nav, footer, main, section, .container, .filters  {
+header, nav, footer, main, section, .container  {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-grow: 0;
-  flex-shrink: 0;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -18,98 +14,74 @@ header, nav, footer, main, section, .container, .filters  {
   align-items: center;
   justify-content: space-between;
   flex-basis: 3em;
-
   &-logo {
     margin-right: auto;
   }
-
-  .content.icon {
-    margin-right: 1em;
-  }
-
-  .ui.avatar.image {
-    margin-right: 0.4em;
+  &-avatar {
+    width: 2em;
+    height: 2em;
+    margin: 0 0.8em 0 0.8em;
   }
 }
 
 .navigation-pane {
-
   flex-basis: 3em;
-  padding: 1em 1em 0em 1em;
   justify-content: flex-end;
-
-  i.icon {
+  .icon {
     margin: 0;
   }
-
   .search-terms {
     display: flex;
     flex: 1;
   }
-
   .search-terms .search-box {
     flex: 1;
     padding-right: 0;
     padding-left: 0.5em;
   }
-
   .filter-text {
     margin: 0 0.5em;
   }
-
   .ui.label>.icon {
     margin: 0;
   }
-
   .ui.input input {
     padding: 0 1em 0 1em;
   }
-
 }
 
 .content-pane {
-
   width: 100vw;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: auto;
   overflow: auto;
   padding: 0em 2em 0em 2em;
-
   > section {
     display: block;
     margin-bottom: 1em;
   }
-
   .video-title {
     margin: 0.3em 0 0 0;
   }
-
   .description, .short-description {
     margin: 0.8em 0;
   }
-
   .ui.feed>.event>.content {
     display: flex;
     flex-direction: column;
   }
-
   .ui.feed>.event>.content .meta {
     display: inline-flex;
-    flex-direction: row;
     justify-content: flex-end;
     align-self: flex-end;
     padding: 0.2em 0.5em 0.1em 0.5em;
   }
-
   .text:not(:last-child) {
     padding-right: 1em;
   }
-
   .meta .icon {
     margin-left: 0.5em;
     margin-right: 0.2em;
   }
-
   .ui.feed>.event>.content .meta .text {
     margin-left: 0.2em;
   }
@@ -119,8 +91,7 @@ header, nav, footer, main, section, .container, .filters  {
   align-items: center;
   justify-content: flex-end;
   flex-basis: 3em;
-
-  i {
+  .icon {
     margin-left: 1em;
   }
 }

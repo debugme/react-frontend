@@ -8,85 +8,76 @@ $black-color: #1B1C1D;
 }
 
 .header-pane {
-
   background-color: $black-color;
   color: $blue-color;
-
   &-logo {
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
-
   &-filter-active {
     color: $red-color;
   }
-
   a:link, a:visited, a:hover, a:active {
     color: $blue-color;
+  }
+  &-avatar {
+    border-radius: 2em;
+  }
+  &-name:first-of-type {
+    margin-left: 0.5em;
+  }
+  &-name:last-of-type {
+    margin-left: 0.5em;
   }
 }
 
 .navigation-pane {
-
+  color: $blue-color;
   .search-terms .ui.transparent.inverted.input input {
     color: $red-color;
   }
-
   .filter-text {
     color: $blue-color;
   }
-
   .pagination {
     color: $blue-color;
   }
-
   .page-count {
     color: $blue-color;
   }
-
   .ui.label {
     background-color: $black-color;
-    color: $blue-color;
     border: solid $black-color 0.08em;
   }
-
   .ui.label>.icon {
     color: $blue-color;
   }
-
   a.ui.label:hover {
     background-color: $black-color;
     border: solid $black-color 0.08em;
   }
-
   a.ui.label:active {
     border: solid $red-color 0.08em;
   }
 }
 
 .content-pane {
-
   /* Hide scrollbars as they look ugly! */
   ::-webkit-scrollbar {
     display: none;
   }
-
   .description, .content-pane .short-description {
     font-size: 0.9rem;
     font-style: italic;
   }
-
   .ui.feed>.event>.content .meta {
     border: solid rgba(118, 118, 118, 0.2) 0.08em;
-    // border: solid red 1px !important;
     border-radius: 0.3em;
     background-color: rgba(118, 118, 118, 0.05);
   }
-
   .text:not(:last-child) {
     border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
   }
-
   .ui.feed>.event>.content .meta a {
     color: $black-color;
     opacity: inherit;
@@ -94,21 +85,15 @@ $black-color: #1B1C1D;
   .ui.feed>.event>.content .meta>.icon {
     cursor: inherit;
   }
-
 }
 
 .footer-pane {
-
   background-color: $black-color;
   color: $grey-color;
-
   a:link, a:visited, a:hover, a:active {
     color: $grey-color;
   }
-
   i {
     color: $blue-color;
   }
 }
-
-

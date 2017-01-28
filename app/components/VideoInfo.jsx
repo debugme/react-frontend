@@ -38,12 +38,10 @@ const VideoInfo = (props) => {
               {description}
             </div>
             <div className="meta">
-
-                <span className="info"><i className="red play icon"></i>{plays}</span><span className="text">plays</span>
-                <span className="info"><i className="red like icon"></i>{likes}</span><span className="text">likes</span>
-                <span className="info"><i className="red comments icon"></i>{comments}</span><span className="text">comments</span>
-                <a href={link} target="_blank"><i className="red linkify icon"></i><span className="infox">video</span><span className="text">link</span></a>
-
+              <span className="info"><i className="red play icon"></i>{plays}</span><span className="text">plays</span>
+              <span className="info"><i className="red like icon"></i>{likes}</span><span className="text">likes</span>
+              <span className="info"><i className="red comments icon"></i>{comments}</span><span className="text">comments</span>
+              <a href={link} target="_blank"><i className="red linkify icon"></i><span className="infox">video</span><span className="text">link</span></a>
             </div>
           </div>
         </div>

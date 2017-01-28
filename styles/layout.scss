@@ -35,30 +35,22 @@ header, nav, footer, main, section, .container, .filters  {
 .navigation-pane {
 
   flex-basis: 3em;
-  display: none;
+  padding: 1em 1em 0em 1em;
+  justify-content: flex-end;
 
-  .filters {
-    justify-content: flex-end;
-    padding: 1em 1em 0em 1em;
+  i.icon {
+    margin: 0;
+  }
+
+  .search-terms {
+    display: flex;
     flex: 1;
+  }
 
-    i.icon {
-      margin: 0;
-    }
-
-    .search-terms {
-      display: flex;
-      flex: 1;
-    }
-
-    .search-terms .search-box {
-      flex: 1;
-      padding-right: 0;
-    }
-
-    .search-terms .search.icon {
-      margin-right: 0.6em;
-    }
+  .search-terms .search-box {
+    flex: 1;
+    padding-right: 0;
+    padding-left: 0.5em;
   }
 
   .filter-text {

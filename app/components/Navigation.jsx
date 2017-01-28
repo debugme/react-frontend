@@ -12,7 +12,7 @@ const Navigation = (props) => {
 
   return (
     <nav className="navigation-pane" style={style}>
-      <div className="filters">
+
         <a className="ui label pagination" onClick={moveToNextPage}>
           <span className="filter-text text">Page</span>
           <span className="pagination">{pageMessage}</span>
@@ -31,7 +31,7 @@ const Navigation = (props) => {
             <input className="search-field" type="text" onInput={searchByTerms} value={rawSearch} />
           </span>
         </span>
-      </div>
+
     </nav>
   )
 }

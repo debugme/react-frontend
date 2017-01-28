@@ -24,9 +24,6 @@
 
   .content-pane {
     padding: 1em 3em 0em 3em;
-    .meta .information {
-      display: flex;
-    }
     .info:not(:nth-last-child(2)) {
       padding: 0;
       border: none;
@@ -82,9 +79,6 @@
 
   .content-pane {
     padding: 1em 2em 0em 2em;
-    .meta .information {
-      display: flex;
-    }
     .info:not(:nth-last-child(2)) {
       padding-right: 1em;
       border-right: solid rgba(118, 118, 118, 0.2) 0.06em;
@@ -147,7 +141,7 @@
       padding: 0;
       border: none;
     }
-    .meta .information .info {
+    .meta .info {
       display: none;
     }
     .text {

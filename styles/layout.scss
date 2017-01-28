@@ -88,13 +88,16 @@ header, nav, footer, main, section, .container, .filters  {
     margin: 0.8em 0;
   }
 
-  .ui.feed>.event>.content .meta {
+  .ui.feed>.event>.content {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
   }
 
-  .meta .information {
+  .ui.feed>.event>.content .meta {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-self: flex-end;
     padding: 0.2em 0.5em 0.1em 0.5em;
   }
 
@@ -102,12 +105,12 @@ header, nav, footer, main, section, .container, .filters  {
     padding-right: 1em;
   }
 
-  .meta .information .icon {
+  .meta .icon {
     margin-left: 0.5em;
     margin-right: 0.2em;
   }
 
-  .ui.feed>.event>.content .meta .information .text {
+  .ui.feed>.event>.content .meta .text {
     margin-left: 0.2em;
   }
 }

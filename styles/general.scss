@@ -9,25 +9,20 @@ $black-color: #1B1C1D;
 
 .header-pane {
 
-  background-color: #1B1C1D;
+  background-color: $black-color;
   color: $blue-color;
 
-  .logo {
+  &-logo {
     text-transform: uppercase;
     letter-spacing: 0.2em;
   }
 
-  .filter-active {
+  &-filter-active {
     color: $red-color;
-  }
-
-  .filter-inactive {
-    color: inherit;
   }
 
   a:link, a:visited, a:hover, a:active {
     color: $blue-color;
-    opacity: 1;
   }
 }
 
@@ -92,7 +87,7 @@ $black-color: #1B1C1D;
   }
 
   .ui.feed>.event>.content .meta a {
-    color: rgba(0,0,0,.6);
+    color: $black-color;
     opacity: inherit;
   }
   .ui.feed>.event>.content .meta>.icon {

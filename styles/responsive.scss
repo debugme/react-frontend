@@ -56,16 +56,14 @@
     .text {
       display: inline-block;
     }
-    .view {
-      .small {
-        display: none;
-      }
-      .medium {
-        display: none;
-      }
-      .large {
-        display: inline-block;
-      }
+    &-view-small {
+      display: none;
+    }
+    &-view-medium {
+      display: none;
+    }
+    &-view-large {
+      display: inline-block;
     }
   }
 }
@@ -125,16 +123,14 @@
     .text {
       display: inline-block;
     }
-    .view {
-      .small {
-        display: none;
-      }
-      .medium {
-        display: inline-block;
-      }
-      .large {
-        display: none;
-      }
+    &-view-small {
+      display: none;
+    }
+    &-view-medium {
+      display: inline-block;
+    }
+    &-view-large {
+      display: none;
     }
 
   }
@@ -197,16 +193,14 @@
     .text {
       display: none;
     }
-    .view {
-      .small {
-        display: inline-block;
-      }
-      .medium {
-        display: none;
-      }
-      .large {
-        display: none;
-      }
+    &-view-small {
+      display: inline-block;
+    }
+    &-view-medium {
+      display: none;
+    }
+    &-view-large {
+      display: none;
     }
   }
 

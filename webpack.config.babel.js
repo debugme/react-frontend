@@ -46,7 +46,6 @@ const getConfig = (env) => {
         'VideoInfo': 'app/components/VideoInfo',
 
         // Define aliases for your SASS files
-        'debug': 'styles/debug.scss',
         'layout': 'styles/layout.scss',
         'responsive': 'styles/responsive.scss',
         'general': 'styles/general.scss'

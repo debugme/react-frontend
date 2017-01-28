@@ -19,6 +19,10 @@ header, nav, footer, main, section, .container, .filters  {
   justify-content: space-between;
   flex-basis: 3em;
 
+  &-logo {
+    margin-right: auto;
+  }
+
   .content.icon {
     margin-right: 1em;
   }

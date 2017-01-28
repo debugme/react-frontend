@@ -1,1 +1,29 @@
+-----------------------------------------------------------------------------------------------------------------
+CSS - ToDo
+-----------------------------------------------------------------------------------------------------------------
+1. Replace your nested selectors with BEM-style classnames
+2. Simplify your SCSS colors so that you can create a smaller set of color variables to use instead
+3. Eliminate the use of semantic-ui from your code to gain a size reduction in your web application
+-----------------------------------------------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------------------------------------------
+React - ToDo
+-----------------------------------------------------------------------------------------------------------------
+1. Connect your application to Redux to store the data (Rather than storing it in the Application React component)
+2. If you canonicalise your data in one place (i.e. Application.jsx) will that allow you to eliminate the use of lodash from your application?
+-----------------------------------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------------------------------
+WebPack - ToDo
+-----------------------------------------------------------------------------------------------------------------
+1. Make sure tree-shaking is applied to your lodash imports
+2. You image loader to embed avatar images into the source code
+-----------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------
+UI/UX Enhancements
+-----------------------------------------------------------------------------------------------------------------
+1. Adding infinite scrolling to your page would elimnate the use of a paging mechanism (Perhaps)
+2. Adding debouncing to the search field should reduce the number of (potentially expensive) searches being triggered
+-----------------------------------------------------------------------------------------------------------------

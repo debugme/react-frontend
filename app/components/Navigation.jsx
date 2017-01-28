@@ -12,26 +12,24 @@ const Navigation = (props) => {
 
   return (
     <nav className="navigation-pane" style={style}>
-
-        <a className="ui label pagination" onClick={moveToNextPage}>
-          <span className="filter-text text">Page</span>
-          <span className="pagination">{pageMessage}</span>
-        </a>
-        <a className="ui label page-count" onClick={togglePageCount}>
-          <span className="filter-text text">Page Count</span>
-          <span className="page-count">{pageCount}</span>
-        </a>
-        <a className="ui label popular-users" onClick={togglePopularUsers}>
-          <span className="filter-text text">Popular Users</span>
-          <i className={classes} />
-        </a>
-        <span className="ui label search-terms">
-          <i className="search icon"></i>
-          <span className="ui inverted transparent icon input search-box">
-            <input className="search-field" type="text" onInput={searchByTerms} value={rawSearch} />
-          </span>
+      <a className="ui label pagination" onClick={moveToNextPage}>
+        <span className="filter-text text">Page</span>
+        <span className="pagination">{pageMessage}</span>
+      </a>
+      <a className="ui label page-count" onClick={togglePageCount}>
+        <span className="filter-text text">Page Count</span>
+        <span className="page-count">{pageCount}</span>
+      </a>
+      <a className="ui label popular-users" onClick={togglePopularUsers}>
+        <span className="filter-text text">Popular Users</span>
+        <i className={classes} />
+      </a>
+      <span className="ui label search-terms">
+        <i className="search icon" />
+        <span className="ui inverted transparent icon input search-box">
+          <input className="search-field" type="text" onInput={searchByTerms} value={rawSearch} />
         </span>
-
+      </span>
     </nav>
   )
 }

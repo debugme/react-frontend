@@ -23,40 +23,33 @@ $black-color: #1B1C1D;
   &-avatar {
     border-radius: 2em;
   }
-  &-name:first-of-type {
-    margin-left: 0.5em;
-  }
-  &-name:last-of-type {
-    margin-left: 0.5em;
-  }
 }
 
 .navigation-pane {
-  .search-terms .ui.transparent.inverted.input input {
-    color: $red-color;
-  }
-  .filter-text {
+  &-filter {
     color: $blue-color;
-  }
-  .pagination {
-    color: $blue-color;
-  }
-  .page-count {
-    color: $blue-color;
-  }
-  .ui.label {
     background-color: $black-color;
     border: solid $black-color 0.08em;
+    border-radius: 0.3em;
+    font-size: 0.9em;
   }
-  .ui.label>.icon {
+  &-filter:hover {
     color: $blue-color;
   }
-  a.ui.label:hover {
-    background-color: $black-color;
-    border: solid $black-color 0.08em;
-  }
-  a.ui.label:active {
+  &-filter:active {
     border: solid $red-color 0.08em;
+  }
+  &-filter:last-child {
+    color: $blue-color;
+  }
+  &-search-icon {
+    color: $blue-color;
+  }
+  &-filter-search-box {
+    background-color: $black-color;
+    color: $red-color;
+    outline: none;
+    border: none;
   }
 }
 

@@ -3,7 +3,7 @@ CSS - ToDo
 -----------------------------------------------------------------------------------------------------------------
 1. Replace your nested selectors with BEM-style classnames
 2. Simplify your SCSS colors so that you can create a smaller set of color variables to use instead
-3. Eliminate the use of semantic-ui from your code to gain a size reduction in your web application
+3. Eliminate the use of semantic-ui from your code to gain a complexity reduction in your web application
 -----------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------

@@ -11,6 +11,9 @@ React - ToDo
 -----------------------------------------------------------------------------------------------------------------
 1. Connect your application to Redux to store the data (Rather than storing it in the Application React component)
 2. If you canonicalise your data in one place (i.e. Application.jsx) will that allow you to eliminate the use of lodash from your application?
+3. Load moment() on serverside to format the dates and not in the clientside (this should reduce clientside loadtime)
+4. Create a custom minimal font bundle from font-awesome for the specific fonts you need for the fotter icons
+5. Investigate rendering serverside rather than clientside for SEO and other reasons
 -----------------------------------------------------------------------------------------------------------------
 
 

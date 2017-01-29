@@ -7,7 +7,7 @@ const Header = (props) => {
 
   return (
     <header className="header-pane">
-      <span className="header-pane-logo">Video Channel</span>
+      <span className="header-pane-logo">VIDEO CHANNEL</span>
       <a href="#" className="header-pane-menu" onClick={toggleMenu}><i className={classes}></i></a>
       <img className="header-pane-avatar" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" />
       <span className="header-pane-name">Asad</span>

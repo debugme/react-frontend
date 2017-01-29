@@ -32,6 +32,7 @@ const Navigation = (props) => {
         <i className="navigation-pane-filter-search-icon search icon" />
         <input className="navigation-pane-filter-search-box" type="text" onInput={searchByTerms} value={rawSearch} />
       </span>
+
     </nav>
   )
 }

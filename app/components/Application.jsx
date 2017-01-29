@@ -12,7 +12,6 @@ import Footer from 'Footer'
 import 'general'
 import 'layout'
 import 'responsive'
-import 'debug'
 
 const Application = React.createClass({
 

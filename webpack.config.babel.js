@@ -70,6 +70,11 @@ const getConfig = (env) => {
         {
           loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
           test: /\.s?css/
+        },
+        // Rename and copy all .woff2 files found over into the public folder
+        {
+            test: /\.(woff2)$/,
+            loader: 'file-loader?name=[name].[hash].[ext]'
         }
       ]
     },

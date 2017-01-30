@@ -88,3 +88,10 @@ $black-color: #1B1C1D;
     color: $blue-color;
   }
 }
+
+@font-face {
+      font-family: 'fontello';
+      src: url('../webfonts/fontello.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }

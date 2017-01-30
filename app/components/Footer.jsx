@@ -4,31 +4,31 @@ const Footer = () => {
   return (
     <footer className="footer-pane">
       <a href="mailto:debugme@hotmail.com">
-        <i className="icon">&#xf1d8;</i>
+        <i className="send icon"></i>
         <span className="footer-pane-text">E-Mail</span>
       </a>
       <a href="https://uk.linkedin.com/in/debugme" target="_blank">
-        <i className="icon">&#xf0e1;</i>
+        <i className="linkedin square icon"></i>
         <span className="footer-pane-text">LinkedIn</span>
       </a>
       <a href="https://github.com/debugme" target="_blank">
-        <i className="icon">&#xf09b;</i>
+        <i className="github icon"></i>
         <span className="footer-pane-text">GitHub</span>
       </a>
       <a href="https://debugme.wordpress.com/" target="_blank">
-        <i className="icon">&#xf19a;</i>
+        <i className="wordpress icon"></i>
         <span className="footer-pane-text">WordPress</span>
       </a>
       <span className="footer-pane-view-small">
-        <i className="red icon">&#xf10a;</i>
+        <i className="tablet red icon"></i>
         <span className="footer-pane-text">Small</span>
       </span>
       <span className="footer-pane-view-medium">
-        <i className="red icon">&#xf109;</i>
+        <i className="laptop red icon"></i>
         <span className="footer-pane-text">Medium</span>
       </span>
       <span className="footer-pane-view-large">
-        <i className="red icon">&#xf108;</i>
+        <i className="desktop red icon"></i>
         <span className="footer-pane-text">Large</span>
       </span>
     </footer>

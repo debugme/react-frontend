@@ -4,14 +4,15 @@
   "description": "A simple react front-end built with webpack",
   "main": "index.js",
   "scripts": {
-    "build:prod": "webpack -p --env.prod",
+    "build:prod": "NODE_ENV=production webpack -p --env.prod",
     "build:dev": "webpack --env.dev",
     "build:prod:watch": "webpack -p --watch --env.prod",
     "build:dev:watch": "webpack --watch --env.dev",
     "prebuild:dev": "rimraf public",
     "prebuild:prod": "rimraf public",
     "prebuild:dev:watch": "rimraf public",
-    "prebuild:prod:watch": "rimraf public"
+    "prebuild:prod:watch": "rimraf public",
+    "deploy:surge": "npm run build:prod;surge --domain react-video.surge.sh -p public"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "node-sass": "^4.3.0",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.1.1",
+    "surge": "^0.18.0",
     "webpack": "^2.2.0"
   },
   "dependencies": {

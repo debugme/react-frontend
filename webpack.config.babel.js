@@ -92,7 +92,9 @@ const getConfig = (env) => {
       // add "bundle.js", "vendor.js" and "bundle.css" in script/link tags into copy of index.html in public folder
       new HtmlWebpackPlugin({
         template: 'app/index.html'
-      })
+      }),
+
+      new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)})
     ]
 
   }

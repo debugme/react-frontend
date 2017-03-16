@@ -21,7 +21,7 @@ React - ToDo
 WebPack - ToDo
 -----------------------------------------------------------------------------------------------------------------
 1. Make sure tree-shaking is applied to your lodash imports
-2. You image loader to embed avatar images into the source code
+2. Use image loader to embed avatar images into the source code
 -----------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------
